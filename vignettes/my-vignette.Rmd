@@ -1,0 +1,203 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#library(planr)
+```
+
+See : [Demo : app proj_inv() function (shinyapps.io)](https://niconguyen.shinyapps.io/Projected_Inventories/)
+
+# Demo light_proj_inv() function
+
+## A look at the raw data
+
+We are going to use the included demo dataset named "blueprint_light".
+
+It contains some basic features:
+
+-   a DFU: it's an item, a SKU (Storage Keeping Unit), or a SKU at a location
+
+-   a Period of time : for example monthly or weekly buckets
+
+-   a Demand : could be some sales forecasts, expressed in units
+
+-   an Opening Inventory : what we hold as available inventories at the beginning of the horizon, expressed in units
+
+-   a Supply Plan : the supplies that we plan to receive, expressed in units
+
+```{r}
+
+#head(blueprint_light)
+
+```
+
+## Let's apply the light_proj_inv()
+
+We are going to calculate 2 new features for each DFU:
+
+-   projected inventories
+
+-   projected coverages, based on the Demand Forecasts
+
+```{r}
+
+# Calculated_PI_DB <- light_proj_inv(dataset = blueprint_light, DFU = DFU, Period = Period, Demand =  Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan)
+# 
+# head(Calculated_PI_DB)
+
+```
+
+## A closer look at the results
+
+Let's consider one DFU: Item 000008 for example
+
+```{r}
+
+# Calculated_PI_DB <- as.data.frame(Calculated_PI_DB)
+# 
+# # Select Item 000008
+# Selection_PI_DB <- filter(Calculated_PI_DB, Calculated_PI_DB$DFU %in% c("Item 000008"))
+
+
+
+```
+
+### A simple display
+
+```{r}
+
+#Selection_PI_DB
+
+```
+
+### A nicer display
+
+We will use the libraries reactable and reactablefmtr to create a nice table.
+
+```{r}
+
+# library(reactable)
+# library(reactablefmtr)
+# 
+# library(dplyr)
+# library(tidyverse)
+
+```
+
+```{r}
+
+# # set a working df
+# df1 <- Selection_PI_DB
+# df1 <- as.data.frame(df1)
+# 
+# 
+# # keep only the needed columns
+# df1 <- df1 %>% select(Period,
+#                       Demand,
+#                       Calculated.Coverage.in.Periods,
+#                       Projected.Inventories.Qty,
+#                       Supply.Plan)
+# 
+# 
+# # create a f_colorpal field
+# df1 <- df1 %>% mutate(f_colorpal = case_when( Calculated.Coverage.in.Periods > 8 ~ "#FFA500", 
+#                                               Calculated.Coverage.in.Periods > 2 ~ "#32CD32",
+#                                               Calculated.Coverage.in.Periods > 0 ~ "#FFFF99",
+#                                               TRUE ~ "#FF0000" ))
+# 
+# 
+# 
+# # create reactable
+# reactable(df1, resizable = TRUE, showPageSizeOptions = TRUE, 
+#               
+#               striped = TRUE, highlight = TRUE, compact = TRUE, 
+#               defaultPageSize = 20,
+#               
+#               columns = list(
+# 
+#                 
+#                 Demand = colDef(
+#                   name = "Demand (units)",
+#                   
+#                   cell = data_bars(df1, 
+#                                    fill_color = "#3fc1c9",
+#                                    text_position = "outside-end"
+#                   )
+#                   
+#                 ),
+#                 
+#                 
+#                 
+# 
+#               Calculated.Coverage.in.Periods = colDef(
+#                 name = "Coverage (Periods)",
+#                 maxWidth = 90,
+#                 cell= color_tiles(df1, color_ref = "f_colorpal")
+#               ),
+#                 
+#                 
+#               f_colorpal = colDef(show = FALSE), # hidden, just used for the coverages
+#                 
+#                 
+#                 
+#                 `Projected.Inventories.Qty`= colDef(
+#                   name = "Projected Inventories (units)",
+#                   format = colFormat(separators = TRUE, digits=0),
+#                   
+#                   style = function(value) {
+#                     if (value > 0) {
+#                       color <- "#008000"
+#                     } else if (value < 0) {
+#                       color <- "#e00000"
+#                     } else {
+#                       color <- "#777"
+#                     }
+#                     list(color = color
+#                          #fontWeight = "bold"
+#                     )
+#                   }
+#                 ),
+#                 
+#                 
+#                 
+#               
+#               Supply.Plan = colDef(
+#                 name = "Supply (units)",
+#                 cell = data_bars(df1, 
+#                                  fill_color = "#3CB371",
+#                                  text_position = "outside-end"
+#                                  )
+#                 )
+# 
+#                 
+#                 
+#                 
+#                 
+#               ), # close columns lits
+#               
+#               columnGroups = list(
+#                 colGroup(name = "Projected Inventories", columns = c("Calculated.Coverage.in.Periods", 
+#                                                                      "Projected.Inventories.Qty"))
+#                 
+# 
+#               )
+#               
+#     ) # close reactable
+
+
+
+
+```
