@@ -1,0 +1,22 @@
+Package: planr
+Title: Package To Calculate Projected Inventories And Replenishment Plan for Demand and Supply Planning and S&OP process
+Version: 0.0.0.9000
+Authors@R: 
+    person("Nicolas", "Nguyen", , "nikonguyen@yahoo.fr", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: A Portofolio of functions to calculate Projected Inventories and Coverages, analyze them, and calculate a Replenishment Plan.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports: 
+    dplyr,
+    magrittr,
+    RcppRoll
+Depends: 
+    R (>= 2.10)
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
