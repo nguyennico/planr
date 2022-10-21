@@ -1,5 +1,5 @@
 Package: planr
-Title: Package To Calculate Projected Inventories And Replenishment Plan for Demand and Supply Planning and S&OP process
+Title: To Calculate Projected Inventories And Replenishment Plan for Demand and Supply Planning and S&OP process
 Version: 0.0.0.9000
 Authors@R: 
     person("Nicolas", "Nguyen", , "nikonguyen@yahoo.fr", role = c("aut", "cre"),
