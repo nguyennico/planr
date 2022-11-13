@@ -1,8 +1,4 @@
-# planr
-
-<!-- badges: start -->
-
-<!-- badges: end -->
+# planr <img src="man/figures/logo.png" align="right" height="300" />
 
 The goal of planr is to provide some functions for the activity of Demand & Supply Planning and S&OP process:
 
@@ -110,16 +106,3 @@ calculated_projection
 
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
