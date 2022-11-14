@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# planr <img src="man/figures/logo.png" align="right" height="300" />
+# planr <img src="man/figures/logo.png" align="right" height="200" />
 
 The goal of planr is to provide some functions for the activity of Demand & Supply Planning and S&OP process:
 
@@ -25,7 +25,7 @@ The goal of planr is to provide some functions for the activity of Demand & Supp
 
 ## Installation
 
-You can install the development version of planr through github:
+You can install the development version of planr through GitHub:
 
 ```r
 library(devtools)

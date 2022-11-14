@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# planr <img src="man/figures/logo.png" align="right" height="300" />
+# planr <img src="man/figures/logo.png" align="right" height="200" />
 
 The goal of planr is to provide some functions for the activity of
 Demand & Supply Planning and S&OP process:
@@ -15,7 +15,7 @@ Demand & Supply Planning and S&OP process:
 
 ## Installation
 
-You can install the development version of planr through github:
+You can install the development version of planr through GitHub:
 
 ``` r
 library(devtools)
