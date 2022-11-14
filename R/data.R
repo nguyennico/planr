@@ -76,6 +76,3 @@ NULL
 #' @author Nicolas Nguyen \email{nikonguyen@yahoo.fr}
 #' @format A data frame with 520 rows and 9 variables
 NULL
-
-
-

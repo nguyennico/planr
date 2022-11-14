@@ -45,5 +45,6 @@ a dataframe with the calculated Replenishment Plan and realted Projected invento
 Calculates a Replenishment Plan (also called DRP : Distribution Requirement Planning) and the related Projected Inventories and Coverages
 }
 \examples{
-drp(dataset = blueprint_drp, DFU = DFU, Period = Period, Demand =  Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, SSCov = SSCov, DRPCovDur = DRPCovDur, Reorder.Qty = Reorder.Qty, DRP.Grid = DRP.Grid)
+drp(dataset = blueprint_drp, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, SSCov = SSCov, DRPCovDur = DRPCovDur, Reorder.Qty = Reorder.Qty, DRP.Grid = DRP.Grid)
+
 }

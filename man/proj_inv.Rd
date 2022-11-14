@@ -39,5 +39,5 @@ a dataframe with the calculated projected inventories and coverages and the rela
 Calculates projected inventories and coverages and perform an analysis vs stocks targets
 }
 \examples{
-proj_inv(dataset = blueprint, DFU = DFU, Period = Period, Demand =  Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, Min.Stocks.Coverage = Min.Stocks.Coverage, Max.Stocks.Coverage = Max.Stocks.Coverage)
+proj_inv(dataset = blueprint, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, Min.Stocks.Coverage = Min.Stocks.Coverage, Max.Stocks.Coverage = Max.Stocks.Coverage)
 }
