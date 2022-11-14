@@ -26,5 +26,6 @@ a dataframe with the calculated projected inventories and coverages and the rela
 Calculates projected inventories and coverages
 }
 \examples{
-light_proj_inv(dataset = blueprint_light, DFU = DFU, Period = Period, Demand =  Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan)
+light_proj_inv(dataset = blueprint_light, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan)
+
 }
