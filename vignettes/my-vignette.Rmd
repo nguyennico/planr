@@ -14,16 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # Installation
 
 ```{r setup}
-library(devtools)
-install_github("nguyennico/planr")
 library(planr)
 ```
-
-
 
 # A demo database
 
