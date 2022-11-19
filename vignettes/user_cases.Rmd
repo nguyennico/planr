@@ -1,0 +1,40 @@
+---
+title: "user_cases"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{user_cases}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(planr)
+```
+
+
+Some examples to apply the planr functions.
+
+## Portfolio Calculations
+
+### Projected Inventories & Coverages
+
+
+### Projected Inventories Analysis
+
+
+### DRP
+
+## Supply Risks Alarm
+
+## Cockpit
+
+
+
+
