@@ -85,9 +85,9 @@
 </h1></div>
 <p>The goal of planr is to provide some functions for the activity of Demand &amp; Supply Planning and S&amp;OP process:</p>
 <ul>
-<li><p>to calculate projected inventories and coverages</p></li>
-<li><p>to calculate and analyze projected inventories and coverages</p></li>
-<li><p>to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning)</p></li>
+<li><p>to calculate projected inventories and coverages : light_proj_inv()</p></li>
+<li><p>to calculate and analyze projected inventories and coverages : proj_inv()</p></li>
+<li><p>to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning) : drp()</p></li>
 </ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -100,119 +100,13 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">planr</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+<h2 id="how-to-use">How to use<a class="anchor" aria-label="anchor" href="#how-to-use"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<p>Let’s create a demo database:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Period</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1/1/2020"</span>, <span class="st">"2/1/2020"</span>, <span class="st">"3/1/2020"</span>, <span class="st">"4/1/2020"</span>, <span class="st">"5/1/2020"</span>, <span class="st">"6/1/2020"</span>, </span>
-<span>    <span class="st">"7/1/2020"</span>, <span class="st">"8/1/2020"</span>, <span class="st">"9/1/2020"</span>, <span class="st">"10/1/2020"</span>, <span class="st">"11/1/2020"</span>, <span class="st">"12/1/2020"</span>,</span>
-<span>    <span class="st">"1/1/2021"</span>, <span class="st">"2/1/2021"</span>, <span class="st">"3/1/2021"</span>, <span class="st">"4/1/2021"</span>, <span class="st">"5/1/2021"</span>, <span class="st">"6/1/2021"</span>, </span>
-<span>    <span class="st">"7/1/2021"</span>, <span class="st">"8/1/2021"</span>, <span class="st">"9/1/2021"</span>, <span class="st">"10/1/2021"</span>, <span class="st">"11/1/2021"</span>, <span class="st">"12/1/2021"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Demand</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">360</span>, <span class="fl">458</span>, <span class="fl">300</span>, <span class="fl">264</span>, <span class="fl">140</span>, <span class="fl">233</span>, <span class="fl">229</span>, <span class="fl">208</span>, <span class="fl">260</span>, <span class="fl">336</span>, <span class="fl">295</span>, <span class="fl">226</span>, <span class="fl">336</span>, <span class="fl">434</span>, <span class="fl">276</span>, </span>
-<span>    <span class="fl">240</span>, <span class="fl">116</span>, <span class="fl">209</span>, <span class="fl">205</span>, <span class="fl">183</span>, <span class="fl">235</span>, <span class="fl">312</span>, <span class="fl">270</span>, <span class="fl">201</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Opening.Inventories</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1310</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">Supply.Plan</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2500</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co"># assemble</span></span>
-<span><span class="va">my_demand_and_supply</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">Period</span>,</span>
-<span>                                   <span class="va">Demand</span>,</span>
-<span>                                   <span class="va">Opening.Inventories</span>,</span>
-<span>                                   <span class="va">Supply.Plan</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># let's add a Product</span></span>
-<span><span class="va">my_demand_and_supply</span><span class="op">$</span><span class="va">DFU</span> <span class="op">&lt;-</span> <span class="st">"Product A"</span></span>
-<span></span>
-<span><span class="co"># format the Period as a date</span></span>
-<span><span class="va">my_demand_and_supply</span><span class="op">$</span><span class="va">Period</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">my_demand_and_supply</span><span class="op">$</span><span class="va">Period</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">'%m/%d/%Y'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># let's have a look at it</span></span>
-<span><span class="va">my_demand_and_supply</span></span>
-<span><span class="co">#&gt;        Period Demand Opening.Inventories Supply.Plan       DFU</span></span>
-<span><span class="co">#&gt; 1  2020-01-01    360                1310           0 Product A</span></span>
-<span><span class="co">#&gt; 2  2020-02-01    458                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 3  2020-03-01    300                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 4  2020-04-01    264                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 5  2020-05-01    140                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 6  2020-06-01    233                   0        2500 Product A</span></span>
-<span><span class="co">#&gt; 7  2020-07-01    229                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 8  2020-08-01    208                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 9  2020-09-01    260                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 10 2020-10-01    336                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 11 2020-11-01    295                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 12 2020-12-01    226                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 13 2021-01-01    336                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 14 2021-02-01    434                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 15 2021-03-01    276                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 16 2021-04-01    240                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 17 2021-05-01    116                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 18 2021-06-01    209                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 19 2021-07-01    205                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 20 2021-08-01    183                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 21 2021-09-01    235                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 22 2021-10-01    312                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 23 2021-11-01    270                   0           0 Product A</span></span>
-<span><span class="co">#&gt; 24 2021-12-01    201                   0           0 Product A</span></span></code></pre></div>
-<p>It contains some basic features:</p>
+<p>Please refer to the package website to :</p>
 <ul>
-<li><p>a Product: it’s an item, a SKU (Storage Keeping Unit), or a SKU at a location, also called a DFU (Demand Forecast Unit)</p></li>
-<li><p>a Period of time : for example monthly or weekly buckets</p></li>
-<li><p>a Demand : could be some sales forecasts, expressed in units</p></li>
-<li><p>an Opening Inventory : what we hold as available inventories at the beginning of the horizon, expressed in units</p></li>
-<li><p>a Supply Plan : the supplies that we plan to receive, expressed in units</p></li>
+<li><p>Get Started</p></li>
+<li><p>See some examples of applications</p></li>
 </ul>
-<div class="section level3">
-<h3 id="calculation-of-projected-inventories--coverages">Calculation of Projected Inventories &amp; Coverages<a class="anchor" aria-label="anchor" href="#calculation-of-projected-inventories--coverages"></a>
-</h3>
-<p>Let’s apply the <code><a href="reference/light_proj_inv.html">light_proj_inv()</a></code> function.</p>
-<p>We are going to calculate 2 new features for each DFU:</p>
-<ul>
-<li><p>projected inventories</p></li>
-<li><p>projected coverages, based on the Demand Forecasts</p></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># calculate</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">planr</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">calculated_projection</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="reference/light_proj_inv.html">light_proj_inv</a></span><span class="op">(</span></span>
-<span>    dataset <span class="op">=</span> <span class="va">my_demand_and_supply</span>,</span>
-<span>    DFU <span class="op">=</span> <span class="va">DFU</span>,</span>
-<span>    Period <span class="op">=</span> <span class="va">Period</span>,</span>
-<span>    Demand <span class="op">=</span>  <span class="va">Demand</span>,</span>
-<span>    Opening.Inventories <span class="op">=</span> <span class="va">Opening.Inventories</span>,</span>
-<span>    Supply.Plan <span class="op">=</span> <span class="va">Supply.Plan</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Joining, by = c("DFU", "Period")</span></span>
-<span></span>
-<span><span class="co"># see results</span></span>
-<span><span class="va">calculated_projection</span></span>
-<span><span class="co">#&gt; # A tibble: 24 × 7</span></span>
-<span><span class="co">#&gt; # Groups:   DFU [1]</span></span>
-<span><span class="co">#&gt;    DFU       Period     Demand Opening.Inventories Calculated.…¹ Proje…² Suppl…³</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;     &lt;date&gt;      &lt;dbl&gt;               &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 Product A 2020-01-01    360                1310           2.7     950       0</span></span>
-<span><span class="co">#&gt;  2 Product A 2020-02-01    458                   0           1.7     492       0</span></span>
-<span><span class="co">#&gt;  3 Product A 2020-03-01    300                   0           0.7     192       0</span></span>
-<span><span class="co">#&gt;  4 Product A 2020-04-01    264                   0           0       -72       0</span></span>
-<span><span class="co">#&gt;  5 Product A 2020-05-01    140                   0           0      -212       0</span></span>
-<span><span class="co">#&gt;  6 Product A 2020-06-01    233                   0           7.4    2055    2500</span></span>
-<span><span class="co">#&gt;  7 Product A 2020-07-01    229                   0           6.4    1826       0</span></span>
-<span><span class="co">#&gt;  8 Product A 2020-08-01    208                   0           5.4    1618       0</span></span>
-<span><span class="co">#&gt;  9 Product A 2020-09-01    260                   0           4.4    1358       0</span></span>
-<span><span class="co">#&gt; 10 Product A 2020-10-01    336                   0           3.4    1022       0</span></span>
-<span><span class="co">#&gt; # … with 14 more rows, and abbreviated variable names</span></span>
-<span><span class="co">#&gt; #   ¹​Calculated.Coverage.in.Periods, ²​Projected.Inventories.Qty, ³​Supply.Plan</span></span></code></pre></div>
-</div>
 </div>
 </div>
   </div>
