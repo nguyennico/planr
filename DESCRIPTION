@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Nicolas", "Nguyen", , "nikonguyen@yahoo.fr", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: A Portofolio of functions to calculate Projected Inventories and Coverages, analyze them, and calculate a Replenishment Plan.
+Description: Tools for Demand and Supply Planning, Sales and Operations Planning Process.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -17,10 +17,14 @@ Depends:
     R (>= 2.10)
 LazyData: true
 Suggests: 
+    highcharter,
     knitr,
+    lubridate,
     reactable,
     reactablefmtr,
     rmarkdown,
+    shiny,
+    tidyverse,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3

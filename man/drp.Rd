@@ -4,18 +4,7 @@
 \alias{drp}
 \title{Calculates a Replenishment Plan (also called DRP : Distribution Requirement Planning) and the related Projected Inventories and Coverages}
 \usage{
-drp(
-  dataset,
-  DFU,
-  Period,
-  Demand,
-  Opening.Inventories,
-  Supply.Plan,
-  SSCov,
-  DRPCovDur,
-  Reorder.Qty,
-  DRP.Grid
-)
+drp(dataset, DFU, Period, Demand, Opening, Supply, SSCov, DRPCovDur, MOQ, FH)
 }
 \arguments{
 \item{dataset}{a dataframe with the demand and supply features for an item per period}
@@ -26,25 +15,25 @@ drp(
 
 \item{Demand}{the quantity of an item planned to be consumed in units for a given period}
 
-\item{Opening.Inventories}{the opening inventories of an item in units at the beginning of the horizon}
+\item{Opening}{the opening inventories of an item in units at the beginning of the horizon}
 
-\item{Supply.Plan}{the quantity of an item planned to be supplied in units for a given period}
+\item{Supply}{the quantity of an item planned to be supplied in units for a given period}
 
 \item{SSCov}{the Safety Stock Coverage, expressed in number of periods}
 
 \item{DRPCovDur}{the Frequency of Supply, expressed in number of periods}
 
-\item{Reorder.Qty}{the Reorder Quantity, expressed in units, 1 by default or a multiple of a MOQ (Minimum Order Quantity)}
+\item{MOQ}{the Multiple Order Quantity, expressed in units, 1 by default or a multiple of a Minimum Order Quantity}
 
-\item{DRP.Grid}{defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.}
+\item{FH}{defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.}
 }
 \value{
-a dataframe with the calculated Replenishment Plan and realted Projected inventories and Coverages
+a dataframe with the calculated Replenishment Plan and related Projected inventories and Coverages
 }
 \description{
 Calculates a Replenishment Plan (also called DRP : Distribution Requirement Planning) and the related Projected Inventories and Coverages
 }
 \examples{
-drp(dataset = blueprint_drp, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, SSCov = SSCov, DRPCovDur = DRPCovDur, Reorder.Qty = Reorder.Qty, DRP.Grid = DRP.Grid)
+drp(dataset = blueprint_drp, DFU, Period, Demand, Opening, Supply, SSCov, DRPCovDur, MOQ, FH)
 
 }

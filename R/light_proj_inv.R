@@ -4,8 +4,8 @@
 #' @param DFU name of an item, a SKU, or a node like an item x location
 #' @param Period a period of time monthly or weekly buckets for example
 #' @param Demand the quantity of an item planned to be consumed in units for a given period
-#' @param Opening.Inventories the opening inventories of an item in units at the beginning of the horizon
-#' @param Supply.Plan the quantity of an item planned to be supplied in units for a given period
+#' @param Opening the opening inventories of an item in units at the beginning of the horizon
+#' @param Supply the quantity of an item planned to be supplied in units for a given period
 #'
 #' @importFrom RcppRoll roll_sum
 #' @importFrom magrittr %>%
@@ -16,14 +16,14 @@
 #' @export
 #'
 #' @examples
-#' light_proj_inv(dataset = blueprint_light, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan)
+#' light_proj_inv(dataset = blueprint_light, DFU, Period, Demand, Opening, Supply)
 #'
 light_proj_inv <- function(dataset,
                            DFU,
                            Period,
                            Demand,
-                           Opening.Inventories,
-                           Supply.Plan) {
+                           Opening,
+                           Supply) {
 
 
 
@@ -84,13 +84,13 @@ light_proj_inv <- function(dataset,
     group_by(DFU, Period) %>%
     summarise(
       Demand = sum(Demand),
-      Opening.Inventories = sum(Opening.Inventories),
-      Supply.Plan = sum(Supply.Plan)
+      Opening = sum(Opening),
+      Supply = sum(Supply)
     ) %>%
     mutate(
       acc_Demand = cumsum(Demand),
-      acc_Opening.Inventories = cumsum(Opening.Inventories),
-      acc_Supply.Plan = cumsum(Supply.Plan)
+      acc_Opening.Inventories = cumsum(Opening),
+      acc_Supply.Plan = cumsum(Supply)
     )
 
 
@@ -103,7 +103,7 @@ light_proj_inv <- function(dataset,
   # calculation projected inventories Qty
 
   df1 <- df1 %>%
-    group_by(DFU, Period, Demand, Opening.Inventories, Supply.Plan) %>%
+    group_by(DFU, Period, Demand, Opening, Supply) %>%
     summarise(
       Projected.Inventories.Qty = sum(acc_Opening.Inventories) + sum(acc_Supply.Plan) - sum(acc_Demand)
     )
@@ -412,10 +412,10 @@ light_proj_inv <- function(dataset,
   #-------------------------------
 
   df1 <- df1 %>% select(
-    DFU, Period, Demand, Opening.Inventories,
+    DFU, Period, Demand, Opening,
     Calculated.Coverage.in.Periods,
     Projected.Inventories.Qty,
-    Supply.Plan
+    Supply
   )
 
 

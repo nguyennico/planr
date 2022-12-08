@@ -4,7 +4,7 @@
 \alias{light_proj_inv}
 \title{Calculates projected inventories and coverages}
 \usage{
-light_proj_inv(dataset, DFU, Period, Demand, Opening.Inventories, Supply.Plan)
+light_proj_inv(dataset, DFU, Period, Demand, Opening, Supply)
 }
 \arguments{
 \item{dataset}{a dataframe with the demand and supply features for an item per period}
@@ -15,9 +15,9 @@ light_proj_inv(dataset, DFU, Period, Demand, Opening.Inventories, Supply.Plan)
 
 \item{Demand}{the quantity of an item planned to be consumed in units for a given period}
 
-\item{Opening.Inventories}{the opening inventories of an item in units at the beginning of the horizon}
+\item{Opening}{the opening inventories of an item in units at the beginning of the horizon}
 
-\item{Supply.Plan}{the quantity of an item planned to be supplied in units for a given period}
+\item{Supply}{the quantity of an item planned to be supplied in units for a given period}
 }
 \value{
 a dataframe with the calculated projected inventories and coverages and the related analysis
@@ -26,6 +26,6 @@ a dataframe with the calculated projected inventories and coverages and the rela
 Calculates projected inventories and coverages
 }
 \examples{
-light_proj_inv(dataset = blueprint_light, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan)
+light_proj_inv(dataset = blueprint_light, DFU, Period, Demand, Opening, Supply)
 
 }

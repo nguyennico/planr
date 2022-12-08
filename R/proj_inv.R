@@ -4,10 +4,10 @@
 #' @param DFU name of an item, a SKU, or a node like an item x location
 #' @param Period a period of time monthly or weekly buckets for example
 #' @param Demand the quantity of an item planned to be consumed in units for a given period
-#' @param Opening.Inventories the opening inventories of an item in units at the beginning of the horizon
-#' @param Supply.Plan the quantity of an item planned to be supplied in units for a given period
-#' @param Min.Stocks.Coverage minimum stocks target of an item expressed in periods
-#' @param Max.Stocks.Coverage maximum stocks target of an item expressed in periods
+#' @param Opening the opening inventories of an item in units at the beginning of the horizon
+#' @param Supply the quantity of an item planned to be supplied in units for a given period
+#' @param Min.Cov minimum stocks target of an item expressed in periods
+#' @param Max.Cov maximum stocks target of an item expressed in periods
 #'
 #' @importFrom RcppRoll roll_sum
 #' @importFrom magrittr %>%
@@ -18,9 +18,9 @@
 #' @export
 #'
 #' @examples
-#' proj_inv(dataset = blueprint, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, Min.Stocks.Coverage = Min.Stocks.Coverage, Max.Stocks.Coverage = Max.Stocks.Coverage)
-proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.Plan,
-                     Min.Stocks.Coverage, Max.Stocks.Coverage) {
+#' proj_inv(dataset = blueprint, DFU, Period, Demand, Opening, Supply, Min.Cov, Max.Cov)
+proj_inv <- function(dataset, DFU, Period, Demand, Opening, Supply,
+                     Min.Cov, Max.Cov) {
 
 
 
@@ -40,8 +40,8 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.P
   Stocks_Parameters_DB <- df1 %>% select(
     DFU,
     Period,
-    Min.Stocks.Coverage,
-    Max.Stocks.Coverage
+    Min.Cov,
+    Max.Cov
   )
 
 
@@ -98,13 +98,13 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.P
     group_by(DFU, Period) %>%
     summarise(
       Demand = sum(Demand),
-      Opening.Inventories = sum(Opening.Inventories),
-      Supply.Plan = sum(Supply.Plan)
+      Opening = sum(Opening),
+      Supply = sum(Supply)
     ) %>%
     mutate(
       acc_Demand = cumsum(Demand),
-      acc_Opening.Inventories = cumsum(Opening.Inventories),
-      acc_Supply.Plan = cumsum(Supply.Plan)
+      acc_Opening.Inventories = cumsum(Opening),
+      acc_Supply.Plan = cumsum(Supply)
     )
 
 
@@ -117,7 +117,7 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.P
   # calculation projected inventories Qty
 
   df1 <- df1 %>%
-    group_by(DFU, Period, Demand, Opening.Inventories, Supply.Plan) %>%
+    group_by(DFU, Period, Demand, Opening, Supply) %>%
     summarise(
       Projected.Inventories.Qty = sum(acc_Opening.Inventories) + sum(acc_Supply.Plan) - sum(acc_Demand)
     )
@@ -443,36 +443,36 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.P
   df1 <- df1 %>% mutate(
     Safety.Stocks =
       case_when(
-        Min.Stocks.Coverage < 1 ~ Min.Stocks.Coverage * roll_sum1,
-        Min.Stocks.Coverage < 2 ~ roll_sum1 + (Min.Stocks.Coverage - 1) * (roll_sum2 - roll_sum1),
-        Min.Stocks.Coverage < 3 ~ roll_sum2 + (Min.Stocks.Coverage - 2) * (roll_sum3 - roll_sum2),
-        Min.Stocks.Coverage < 4 ~ roll_sum3 + (Min.Stocks.Coverage - 3) * (roll_sum4 - roll_sum3),
-        Min.Stocks.Coverage < 5 ~ roll_sum4 + (Min.Stocks.Coverage - 4) * (roll_sum5 - roll_sum4),
-        Min.Stocks.Coverage < 6 ~ roll_sum5 + (Min.Stocks.Coverage - 5) * (roll_sum6 - roll_sum5),
-        Min.Stocks.Coverage < 7 ~ roll_sum6 + (Min.Stocks.Coverage - 6) * (roll_sum7 - roll_sum6),
-        Min.Stocks.Coverage < 8 ~ roll_sum7 + (Min.Stocks.Coverage - 7) * (roll_sum8 - roll_sum7),
-        Min.Stocks.Coverage < 9 ~ roll_sum8 + (Min.Stocks.Coverage - 8) * (roll_sum9 - roll_sum8),
-        Min.Stocks.Coverage < 10 ~ roll_sum9 + (Min.Stocks.Coverage - 9) * (roll_sum10 - roll_sum9),
-        Min.Stocks.Coverage < 11 ~ roll_sum10 + (Min.Stocks.Coverage - 10) * (roll_sum11 - roll_sum10),
-        Min.Stocks.Coverage < 12 ~ roll_sum11 + (Min.Stocks.Coverage - 11) * (roll_sum12 - roll_sum11),
-        Min.Stocks.Coverage < 13 ~ roll_sum12 + (Min.Stocks.Coverage - 12) * (roll_sum13 - roll_sum12),
-        Min.Stocks.Coverage < 14 ~ roll_sum13 + (Min.Stocks.Coverage - 13) * (roll_sum14 - roll_sum13),
-        Min.Stocks.Coverage < 15 ~ roll_sum14 + (Min.Stocks.Coverage - 14) * (roll_sum15 - roll_sum14),
-        Min.Stocks.Coverage < 16 ~ roll_sum15 + (Min.Stocks.Coverage - 15) * (roll_sum16 - roll_sum15),
-        Min.Stocks.Coverage < 17 ~ roll_sum16 + (Min.Stocks.Coverage - 16) * (roll_sum17 - roll_sum16),
-        Min.Stocks.Coverage < 18 ~ roll_sum17 + (Min.Stocks.Coverage - 17) * (roll_sum18 - roll_sum17),
-        Min.Stocks.Coverage < 19 ~ roll_sum18 + (Min.Stocks.Coverage - 18) * (roll_sum19 - roll_sum18),
-        Min.Stocks.Coverage < 20 ~ roll_sum19 + (Min.Stocks.Coverage - 19) * (roll_sum20 - roll_sum19),
-        Min.Stocks.Coverage < 21 ~ roll_sum20 + (Min.Stocks.Coverage - 20) * (roll_sum21 - roll_sum20),
-        Min.Stocks.Coverage < 22 ~ roll_sum21 + (Min.Stocks.Coverage - 21) * (roll_sum22 - roll_sum21),
-        Min.Stocks.Coverage < 23 ~ roll_sum22 + (Min.Stocks.Coverage - 22) * (roll_sum23 - roll_sum22),
-        Min.Stocks.Coverage < 24 ~ roll_sum23 + (Min.Stocks.Coverage - 23) * (roll_sum24 - roll_sum23),
-        Min.Stocks.Coverage < 25 ~ roll_sum24 + (Min.Stocks.Coverage - 24) * (roll_sum25 - roll_sum24),
-        Min.Stocks.Coverage < 26 ~ roll_sum25 + (Min.Stocks.Coverage - 25) * (roll_sum26 - roll_sum25),
-        Min.Stocks.Coverage < 27 ~ roll_sum26 + (Min.Stocks.Coverage - 26) * (roll_sum27 - roll_sum26),
-        Min.Stocks.Coverage < 28 ~ roll_sum27 + (Min.Stocks.Coverage - 27) * (roll_sum28 - roll_sum27),
-        Min.Stocks.Coverage < 29 ~ roll_sum28 + (Min.Stocks.Coverage - 28) * (roll_sum29 - roll_sum28),
-        Min.Stocks.Coverage < 30 ~ roll_sum29 + (Min.Stocks.Coverage - 29) * (roll_sum30 - roll_sum29),
+        Min.Cov < 1 ~ Min.Cov * roll_sum1,
+        Min.Cov < 2 ~ roll_sum1 + (Min.Cov - 1) * (roll_sum2 - roll_sum1),
+        Min.Cov < 3 ~ roll_sum2 + (Min.Cov - 2) * (roll_sum3 - roll_sum2),
+        Min.Cov < 4 ~ roll_sum3 + (Min.Cov - 3) * (roll_sum4 - roll_sum3),
+        Min.Cov < 5 ~ roll_sum4 + (Min.Cov - 4) * (roll_sum5 - roll_sum4),
+        Min.Cov < 6 ~ roll_sum5 + (Min.Cov - 5) * (roll_sum6 - roll_sum5),
+        Min.Cov < 7 ~ roll_sum6 + (Min.Cov - 6) * (roll_sum7 - roll_sum6),
+        Min.Cov < 8 ~ roll_sum7 + (Min.Cov - 7) * (roll_sum8 - roll_sum7),
+        Min.Cov < 9 ~ roll_sum8 + (Min.Cov - 8) * (roll_sum9 - roll_sum8),
+        Min.Cov < 10 ~ roll_sum9 + (Min.Cov - 9) * (roll_sum10 - roll_sum9),
+        Min.Cov < 11 ~ roll_sum10 + (Min.Cov - 10) * (roll_sum11 - roll_sum10),
+        Min.Cov < 12 ~ roll_sum11 + (Min.Cov - 11) * (roll_sum12 - roll_sum11),
+        Min.Cov < 13 ~ roll_sum12 + (Min.Cov - 12) * (roll_sum13 - roll_sum12),
+        Min.Cov < 14 ~ roll_sum13 + (Min.Cov - 13) * (roll_sum14 - roll_sum13),
+        Min.Cov < 15 ~ roll_sum14 + (Min.Cov - 14) * (roll_sum15 - roll_sum14),
+        Min.Cov < 16 ~ roll_sum15 + (Min.Cov - 15) * (roll_sum16 - roll_sum15),
+        Min.Cov < 17 ~ roll_sum16 + (Min.Cov - 16) * (roll_sum17 - roll_sum16),
+        Min.Cov < 18 ~ roll_sum17 + (Min.Cov - 17) * (roll_sum18 - roll_sum17),
+        Min.Cov < 19 ~ roll_sum18 + (Min.Cov - 18) * (roll_sum19 - roll_sum18),
+        Min.Cov < 20 ~ roll_sum19 + (Min.Cov - 19) * (roll_sum20 - roll_sum19),
+        Min.Cov < 21 ~ roll_sum20 + (Min.Cov - 20) * (roll_sum21 - roll_sum20),
+        Min.Cov < 22 ~ roll_sum21 + (Min.Cov - 21) * (roll_sum22 - roll_sum21),
+        Min.Cov < 23 ~ roll_sum22 + (Min.Cov - 22) * (roll_sum23 - roll_sum22),
+        Min.Cov < 24 ~ roll_sum23 + (Min.Cov - 23) * (roll_sum24 - roll_sum23),
+        Min.Cov < 25 ~ roll_sum24 + (Min.Cov - 24) * (roll_sum25 - roll_sum24),
+        Min.Cov < 26 ~ roll_sum25 + (Min.Cov - 25) * (roll_sum26 - roll_sum25),
+        Min.Cov < 27 ~ roll_sum26 + (Min.Cov - 26) * (roll_sum27 - roll_sum26),
+        Min.Cov < 28 ~ roll_sum27 + (Min.Cov - 27) * (roll_sum28 - roll_sum27),
+        Min.Cov < 29 ~ roll_sum28 + (Min.Cov - 28) * (roll_sum29 - roll_sum28),
+        Min.Cov < 30 ~ roll_sum29 + (Min.Cov - 29) * (roll_sum30 - roll_sum29),
         TRUE ~ 0
       ) # close case_when
   ) # close mutate
@@ -492,47 +492,47 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.P
   df1 <- df1 %>% mutate(
     Maximum.Stocks =
       case_when(
-        Max.Stocks.Coverage < 1 ~ Max.Stocks.Coverage * roll_sum1,
-        Max.Stocks.Coverage < 2 ~ roll_sum1 + (Max.Stocks.Coverage - 1) * (roll_sum2 - roll_sum1),
-        Max.Stocks.Coverage < 3 ~ roll_sum2 + (Max.Stocks.Coverage - 2) * (roll_sum3 - roll_sum2),
-        Max.Stocks.Coverage < 4 ~ roll_sum3 + (Max.Stocks.Coverage - 3) * (roll_sum4 - roll_sum3),
-        Max.Stocks.Coverage < 5 ~ roll_sum4 + (Max.Stocks.Coverage - 4) * (roll_sum5 - roll_sum4),
-        Max.Stocks.Coverage < 6 ~ roll_sum5 + (Max.Stocks.Coverage - 5) * (roll_sum6 - roll_sum5),
-        Max.Stocks.Coverage < 7 ~ roll_sum6 + (Max.Stocks.Coverage - 6) * (roll_sum7 - roll_sum6),
-        Max.Stocks.Coverage < 8 ~ roll_sum7 + (Max.Stocks.Coverage - 7) * (roll_sum8 - roll_sum7),
-        Max.Stocks.Coverage < 9 ~ roll_sum8 + (Max.Stocks.Coverage - 8) * (roll_sum9 - roll_sum8),
-        Max.Stocks.Coverage < 10 ~ roll_sum9 + (Max.Stocks.Coverage - 9) * (roll_sum10 - roll_sum9),
-        Max.Stocks.Coverage < 11 ~ roll_sum10 + (Max.Stocks.Coverage - 10) * (roll_sum11 - roll_sum10),
-        Max.Stocks.Coverage < 12 ~ roll_sum11 + (Max.Stocks.Coverage - 11) * (roll_sum12 - roll_sum11),
-        Max.Stocks.Coverage < 13 ~ roll_sum12 + (Max.Stocks.Coverage - 12) * (roll_sum13 - roll_sum12),
-        Max.Stocks.Coverage < 14 ~ roll_sum13 + (Max.Stocks.Coverage - 13) * (roll_sum14 - roll_sum13),
-        Max.Stocks.Coverage < 15 ~ roll_sum14 + (Max.Stocks.Coverage - 14) * (roll_sum15 - roll_sum14),
-        Max.Stocks.Coverage < 16 ~ roll_sum15 + (Max.Stocks.Coverage - 15) * (roll_sum16 - roll_sum15),
-        Max.Stocks.Coverage < 17 ~ roll_sum16 + (Max.Stocks.Coverage - 16) * (roll_sum17 - roll_sum16),
-        Max.Stocks.Coverage < 18 ~ roll_sum17 + (Max.Stocks.Coverage - 17) * (roll_sum18 - roll_sum17),
-        Max.Stocks.Coverage < 19 ~ roll_sum18 + (Max.Stocks.Coverage - 18) * (roll_sum19 - roll_sum18),
-        Max.Stocks.Coverage < 20 ~ roll_sum19 + (Max.Stocks.Coverage - 19) * (roll_sum20 - roll_sum19),
-        Max.Stocks.Coverage < 21 ~ roll_sum20 + (Max.Stocks.Coverage - 20) * (roll_sum21 - roll_sum20),
-        Max.Stocks.Coverage < 22 ~ roll_sum21 + (Max.Stocks.Coverage - 21) * (roll_sum22 - roll_sum21),
-        Max.Stocks.Coverage < 23 ~ roll_sum22 + (Max.Stocks.Coverage - 22) * (roll_sum23 - roll_sum22),
-        Max.Stocks.Coverage < 24 ~ roll_sum23 + (Max.Stocks.Coverage - 23) * (roll_sum24 - roll_sum23),
-        Max.Stocks.Coverage < 25 ~ roll_sum24 + (Max.Stocks.Coverage - 24) * (roll_sum25 - roll_sum24),
-        Max.Stocks.Coverage < 26 ~ roll_sum25 + (Max.Stocks.Coverage - 25) * (roll_sum26 - roll_sum25),
-        Max.Stocks.Coverage < 27 ~ roll_sum26 + (Max.Stocks.Coverage - 26) * (roll_sum27 - roll_sum26),
-        Max.Stocks.Coverage < 28 ~ roll_sum27 + (Max.Stocks.Coverage - 27) * (roll_sum28 - roll_sum27),
-        Max.Stocks.Coverage < 29 ~ roll_sum28 + (Max.Stocks.Coverage - 28) * (roll_sum29 - roll_sum28),
-        Max.Stocks.Coverage < 30 ~ roll_sum29 + (Max.Stocks.Coverage - 29) * (roll_sum30 - roll_sum29),
-        Max.Stocks.Coverage < 31 ~ roll_sum30 + (Max.Stocks.Coverage - 30) * (roll_sum31 - roll_sum30),
-        Max.Stocks.Coverage < 32 ~ roll_sum31 + (Max.Stocks.Coverage - 31) * (roll_sum32 - roll_sum31),
-        Max.Stocks.Coverage < 33 ~ roll_sum32 + (Max.Stocks.Coverage - 32) * (roll_sum33 - roll_sum32),
-        Max.Stocks.Coverage < 34 ~ roll_sum33 + (Max.Stocks.Coverage - 33) * (roll_sum34 - roll_sum33),
-        Max.Stocks.Coverage < 35 ~ roll_sum34 + (Max.Stocks.Coverage - 34) * (roll_sum35 - roll_sum34),
-        Max.Stocks.Coverage < 36 ~ roll_sum35 + (Max.Stocks.Coverage - 35) * (roll_sum36 - roll_sum35),
-        Max.Stocks.Coverage < 37 ~ roll_sum36 + (Max.Stocks.Coverage - 36) * (roll_sum37 - roll_sum36),
-        Max.Stocks.Coverage < 38 ~ roll_sum37 + (Max.Stocks.Coverage - 37) * (roll_sum38 - roll_sum37),
-        Max.Stocks.Coverage < 39 ~ roll_sum38 + (Max.Stocks.Coverage - 38) * (roll_sum39 - roll_sum38),
-        Max.Stocks.Coverage < 40 ~ roll_sum39 + (Max.Stocks.Coverage - 39) * (roll_sum40 - roll_sum39),
-        Max.Stocks.Coverage < 41 ~ roll_sum40 + (Max.Stocks.Coverage - 40) * (roll_sum41 - roll_sum40),
+        Max.Cov < 1 ~ Max.Cov * roll_sum1,
+        Max.Cov < 2 ~ roll_sum1 + (Max.Cov - 1) * (roll_sum2 - roll_sum1),
+        Max.Cov < 3 ~ roll_sum2 + (Max.Cov - 2) * (roll_sum3 - roll_sum2),
+        Max.Cov < 4 ~ roll_sum3 + (Max.Cov - 3) * (roll_sum4 - roll_sum3),
+        Max.Cov < 5 ~ roll_sum4 + (Max.Cov - 4) * (roll_sum5 - roll_sum4),
+        Max.Cov < 6 ~ roll_sum5 + (Max.Cov - 5) * (roll_sum6 - roll_sum5),
+        Max.Cov < 7 ~ roll_sum6 + (Max.Cov - 6) * (roll_sum7 - roll_sum6),
+        Max.Cov < 8 ~ roll_sum7 + (Max.Cov - 7) * (roll_sum8 - roll_sum7),
+        Max.Cov < 9 ~ roll_sum8 + (Max.Cov - 8) * (roll_sum9 - roll_sum8),
+        Max.Cov < 10 ~ roll_sum9 + (Max.Cov - 9) * (roll_sum10 - roll_sum9),
+        Max.Cov < 11 ~ roll_sum10 + (Max.Cov - 10) * (roll_sum11 - roll_sum10),
+        Max.Cov < 12 ~ roll_sum11 + (Max.Cov - 11) * (roll_sum12 - roll_sum11),
+        Max.Cov < 13 ~ roll_sum12 + (Max.Cov - 12) * (roll_sum13 - roll_sum12),
+        Max.Cov < 14 ~ roll_sum13 + (Max.Cov - 13) * (roll_sum14 - roll_sum13),
+        Max.Cov < 15 ~ roll_sum14 + (Max.Cov - 14) * (roll_sum15 - roll_sum14),
+        Max.Cov < 16 ~ roll_sum15 + (Max.Cov - 15) * (roll_sum16 - roll_sum15),
+        Max.Cov < 17 ~ roll_sum16 + (Max.Cov - 16) * (roll_sum17 - roll_sum16),
+        Max.Cov < 18 ~ roll_sum17 + (Max.Cov - 17) * (roll_sum18 - roll_sum17),
+        Max.Cov < 19 ~ roll_sum18 + (Max.Cov - 18) * (roll_sum19 - roll_sum18),
+        Max.Cov < 20 ~ roll_sum19 + (Max.Cov - 19) * (roll_sum20 - roll_sum19),
+        Max.Cov < 21 ~ roll_sum20 + (Max.Cov - 20) * (roll_sum21 - roll_sum20),
+        Max.Cov < 22 ~ roll_sum21 + (Max.Cov - 21) * (roll_sum22 - roll_sum21),
+        Max.Cov < 23 ~ roll_sum22 + (Max.Cov - 22) * (roll_sum23 - roll_sum22),
+        Max.Cov < 24 ~ roll_sum23 + (Max.Cov - 23) * (roll_sum24 - roll_sum23),
+        Max.Cov < 25 ~ roll_sum24 + (Max.Cov - 24) * (roll_sum25 - roll_sum24),
+        Max.Cov < 26 ~ roll_sum25 + (Max.Cov - 25) * (roll_sum26 - roll_sum25),
+        Max.Cov < 27 ~ roll_sum26 + (Max.Cov - 26) * (roll_sum27 - roll_sum26),
+        Max.Cov < 28 ~ roll_sum27 + (Max.Cov - 27) * (roll_sum28 - roll_sum27),
+        Max.Cov < 29 ~ roll_sum28 + (Max.Cov - 28) * (roll_sum29 - roll_sum28),
+        Max.Cov < 30 ~ roll_sum29 + (Max.Cov - 29) * (roll_sum30 - roll_sum29),
+        Max.Cov < 31 ~ roll_sum30 + (Max.Cov - 30) * (roll_sum31 - roll_sum30),
+        Max.Cov < 32 ~ roll_sum31 + (Max.Cov - 31) * (roll_sum32 - roll_sum31),
+        Max.Cov < 33 ~ roll_sum32 + (Max.Cov - 32) * (roll_sum33 - roll_sum32),
+        Max.Cov < 34 ~ roll_sum33 + (Max.Cov - 33) * (roll_sum34 - roll_sum33),
+        Max.Cov < 35 ~ roll_sum34 + (Max.Cov - 34) * (roll_sum35 - roll_sum34),
+        Max.Cov < 36 ~ roll_sum35 + (Max.Cov - 35) * (roll_sum36 - roll_sum35),
+        Max.Cov < 37 ~ roll_sum36 + (Max.Cov - 36) * (roll_sum37 - roll_sum36),
+        Max.Cov < 38 ~ roll_sum37 + (Max.Cov - 37) * (roll_sum38 - roll_sum37),
+        Max.Cov < 39 ~ roll_sum38 + (Max.Cov - 38) * (roll_sum39 - roll_sum38),
+        Max.Cov < 40 ~ roll_sum39 + (Max.Cov - 39) * (roll_sum40 - roll_sum39),
+        Max.Cov < 41 ~ roll_sum40 + (Max.Cov - 40) * (roll_sum41 - roll_sum40),
         TRUE ~ 0
       ) # close case_when
   ) # close mutate
@@ -581,14 +581,14 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.P
   #-------------------------------
 
   df1 <- df1 %>% select(
-    DFU, Period, Demand, Opening.Inventories,
+    DFU, Period, Demand, Opening,
     Calculated.Coverage.in.Periods,
     Projected.Inventories.Qty,
-    Supply.Plan,
+    Supply,
 
     # Stocks Parameters
-    Min.Stocks.Coverage,
-    Max.Stocks.Coverage,
+    Min.Cov,
+    Max.Cov,
 
     # Projected Stocks Parameters
     Safety.Stocks,
@@ -633,10 +633,10 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening.Inventories, Supply.P
 
 
   # identify OverStocks situations: above maximum stocks
-  df1$PI.Index <- if_else(df1$Calculated.Coverage.in.Periods > df1$Max.Stocks.Coverage, "OverStock", "OK")
+  df1$PI.Index <- if_else(df1$Calculated.Coverage.in.Periods > df1$Max.Cov, "OverStock", "OK")
 
   # identify Alerts situations: below safety stocks
-  df1$PI.Index <- if_else(df1$Calculated.Coverage.in.Periods < df1$Min.Stocks.Coverage, "Alert", df1$PI.Index)
+  df1$PI.Index <- if_else(df1$Calculated.Coverage.in.Periods < df1$Min.Cov, "Alert", df1$PI.Index)
 
   # identify Shortages: when projected inventories are negative
   df1$PI.Index <- if_else(df1$Projected.Inventories.Qty < 0, "Shortage", df1$PI.Index)

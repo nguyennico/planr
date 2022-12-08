@@ -19,10 +19,10 @@ We can apply on it the proj_inv() function, it will return calculated projected 
 \item DFU, an item
 \item Period, a date
 \item Demand, a consumption in units
-\item Opening.Inventories, available inventories at the beginning in units
-\item Supply.Plan, a Replenishment Plan in units
-\item Min.Stocks.Coverage, a Minimum Stocks Targets in number of Periods
-\item Max.Stocks.Coverage, a Maximum Stocks Targets in number of Periods
+\item Opening, available inventories at the beginning in units
+\item Supply, a Replenishment Plan in units
+\item Min.Cov, a Minimum Stocks Targets in number of Periods
+\item Max.Cov, a Maximum Stocks Targets in number of Periods
 
 }
 }

@@ -7,10 +7,10 @@
 #'   \item DFU, an item
 #'   \item Period, a date
 #'   \item Demand, a consumption in units
-#'   \item Opening.Inventories, available inventories at the beginning in units
-#'   \item Supply.Plan, a Replenishment Plan in units
-#'   \item Min.Stocks.Coverage, a Minimum Stocks Targets in number of Periods
-#'   \item Max.Stocks.Coverage, a Maximum Stocks Targets in number of Periods
+#'   \item Opening, available inventories at the beginning in units
+#'   \item Supply, a Replenishment Plan in units
+#'   \item Min.Cov, a Minimum Stocks Targets in number of Periods
+#'   \item Max.Cov, a Maximum Stocks Targets in number of Periods
 #'
 #' }
 #'
@@ -35,8 +35,8 @@ NULL
 #'   \item DFU, an item
 #'   \item Period, a date
 #'   \item Demand, a consumption in units
-#'   \item Opening.Inventories, available inventories at the beginning in units
-#'   \item Supply.Plan, a Replenishment Plan in units
+#'   \item Opening, available inventories at the beginning in units
+#'   \item Supply, a Replenishment Plan in units
 #'
 #' }
 #'
@@ -60,12 +60,12 @@ NULL
 #'   \item DFU, an item
 #'   \item Period, a date
 #'   \item Demand, a consumption in units
-#'   \item Opening.Inventories, available inventories at the beginning in units
-#'   \item Supply.Plan, a Replenishment Plan in units
-#'   \item DRP.Grid, defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.
+#'   \item Opening, available inventories at the beginning in units
+#'   \item Supply, a Replenishment Plan in units
+#'   \item FH, defines the Frozen and Free Horizon. It has 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.
 #'   \item SSCov, the Safety Stock Coverage, expressed in number of periods
 #'   \item DRPCovDur the Frequency of Supply, expressed in number of periods
-#'   \item Reorder.Qty the Reorder Quantity, expressed in units, 1 by default or a multiple of a MOQ (Minimum Order Quantity)
+#'   \item MOQ the Multiple Order Quantity, expressed in units, 1 by default or a Minimum Order Quantity
 #'
 #' }
 #'

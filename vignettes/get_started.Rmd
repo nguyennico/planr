@@ -20,6 +20,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 
 ```{r setup, warning = FALSE, message = FALSE}
 
+library(tidyverse)
 library(dplyr)
 library(lubridate)
 library(tidyverse)
@@ -59,16 +60,16 @@ Period <- c(
 
 Demand <- c(360, 458,300,264,140,233,229,208,260,336,295,226,336,434,276,240,116,209,205,183,235,312,270,201)
 
-Opening.Inventories <- c(1310,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+Opening <- c(1310,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 
-Supply.Plan <- c(0,0,0,0,0,2500,0,0,0,0,0,0,0,0,0,2000,0,0,0,0,0,0,0,0)
+Supply <- c(0,0,0,0,0,2500,0,0,0,0,0,0,0,0,0,2000,0,0,0,0,0,0,0,0)
 
 
 # assemble
 my_demand_and_suppply <- data.frame(Period,
                   Demand,
-                  Opening.Inventories,
-                  Supply.Plan)
+                  Opening,
+                  Supply)
 
 # let's add a Product
 my_demand_and_suppply$DFU <- "Product A"
@@ -119,8 +120,8 @@ calculated_projection <- light_proj_inv(dataset = my_demand_and_suppply,
                                         DFU = DFU, 
                                         Period = Period, 
                                         Demand =  Demand, 
-                                        Opening.Inventories = Opening.Inventories, 
-                                        Supply.Plan = Supply.Plan)
+                                        Opening = Opening, 
+                                        Supply = Supply)
 
 # see results
 head(calculated_projection)
@@ -143,7 +144,7 @@ df1 <- df1 %>% select(Period,
                       Demand,
                       Calculated.Coverage.in.Periods,
                       Projected.Inventories.Qty,
-                      Supply.Plan)
+                      Supply)
 
 
 # create a f_colorpal field
@@ -208,7 +209,7 @@ reactable(df1, resizable = TRUE, showPageSizeOptions = TRUE,
 
 
 
-              Supply.Plan = colDef(
+              Supply = colDef(
                 name = "Supply (units)",
                 cell = data_bars(df1,
                                  fill_color = "#3CB371",
@@ -299,7 +300,7 @@ First, let's add some parameters to our initial database.
 ### 2.1) Data Template
 
 Define min & max coverages, through 2 parameters: -
-Min.Stocks.Coverage - Max.Stocks.Coverage
+Min.Cov - Max.Cov
 
 Expressed in number of periods of coverages. The periods can be in
 monthly buckets, weekly buckets, etc...
@@ -308,8 +309,8 @@ monthly buckets, weekly buckets, etc...
 
 my_data_with_parameters <- my_demand_and_suppply
 
-my_data_with_parameters$Min.Stocks.Coverage <- 2
-my_data_with_parameters$Max.Stocks.Coverage <- 4
+my_data_with_parameters$Min.Cov <- 2
+my_data_with_parameters$Max.Cov <- 4
 
 head(my_data_with_parameters)
 
@@ -325,10 +326,10 @@ df1 <- proj_inv(data = my_data_with_parameters,
                 DFU = DFU, 
                 Period = Period, 
                 Demand =  Demand, 
-                Opening.Inventories = Opening.Inventories, 
-                Supply.Plan = Supply.Plan,
-                Min.Stocks.Coverage = Min.Stocks.Coverage, 
-                Max.Stocks.Coverage = Max.Stocks.Coverage)
+                Opening = Opening, 
+                Supply = Supply,
+                Min.Cov = Min.Cov, 
+                Max.Cov = Max.Cov)
 
 # see results
 calculated_projection_and_analysis <- df1
@@ -439,7 +440,7 @@ reactable(df1, resizable = TRUE, showPageSizeOptions = TRUE,
                 
 
                 
-                Supply.Plan = colDef(
+                Supply = colDef(
                   name = "Supply (units)",
                   cell = data_bars(df1, 
                                    
@@ -484,15 +485,15 @@ reactable(df1, resizable = TRUE, showPageSizeOptions = TRUE,
                   format = colFormat(separators = TRUE, digits=0)
                 ),
                 
-                `Opening.Inventories`= colDef(
+                `Opening`= colDef(
                   name = "Opening Inventories (units)",
                   format = colFormat(separators = TRUE, digits=0)
                 ),
                 
                 
-                `Min.Stocks.Coverage`= colDef(name = "Min Stocks Coverage (Periods)"),
+                `Min.Cov`= colDef(name = "Min Stocks Coverage (Periods)"),
                 
-                `Max.Stocks.Coverage`= colDef(name = "Maximum Stocks Coverage (Periods)"),
+                `Max.Cov`= colDef(name = "Maximum Stocks Coverage (Periods)"),
                 
                 
                 # ratios
@@ -509,8 +510,8 @@ reactable(df1, resizable = TRUE, showPageSizeOptions = TRUE,
                 colGroup(name = "Projected Inventories", columns = c("Calculated.Coverage.in.Periods", 
                                                                      "Projected.Inventories.Qty")),
                 
-                colGroup(name = "Stocks Levels Parameters", columns = c("Min.Stocks.Coverage", 
-                                                                        "Max.Stocks.Coverage",
+                colGroup(name = "Stocks Levels Parameters", columns = c("Min.Cov", 
+                                                                        "Max.Cov",
                                                                         "Safety.Stocks",
                                                                         "Maximum.Stocks")),
                 
@@ -585,8 +586,8 @@ df1 <- my_demand_and_suppply
 
 df1$SSCov <- 2
 df1$DRPCovDur <- 3
-df1$Reorder.Qty <- 1
-df1$DRP.Grid <- c("Frozen", "Frozen", "Frozen", "Frozen","Frozen","Frozen","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free")
+df1$MOQ <- 1
+df1$FH <- c("Frozen", "Frozen", "Frozen", "Frozen","Frozen","Frozen","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free")
 
 
 # get Results
@@ -610,12 +611,12 @@ demo_drp <- drp(data = df1,
            DFU = DFU,
            Period = Period,
            Demand =  Demand,
-           Opening.Inventories = Opening.Inventories,
-           Supply.Plan = Supply.Plan,
+           Opening = Opening,
+           Supply = Supply,
            SSCov = SSCov,
            DRPCovDur = DRPCovDur,
-           Reorder.Qty = Reorder.Qty,
-           DRP.Grid = DRP.Grid
+           MOQ = MOQ,
+           FH = FH
 )
 
 
