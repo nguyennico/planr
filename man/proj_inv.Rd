@@ -4,16 +4,7 @@
 \alias{proj_inv}
 \title{Calculates projected inventories and coverages and perform an analysis vs stocks targets}
 \usage{
-proj_inv(
-  dataset,
-  DFU,
-  Period,
-  Demand,
-  Opening.Inventories,
-  Supply.Plan,
-  Min.Stocks.Coverage,
-  Max.Stocks.Coverage
-)
+proj_inv(dataset, DFU, Period, Demand, Opening, Supply, Min.Cov, Max.Cov)
 }
 \arguments{
 \item{dataset}{a dataframe with the demand and supply features for an item per period}
@@ -24,13 +15,13 @@ proj_inv(
 
 \item{Demand}{the quantity of an item planned to be consumed in units for a given period}
 
-\item{Opening.Inventories}{the opening inventories of an item in units at the beginning of the horizon}
+\item{Opening}{the opening inventories of an item in units at the beginning of the horizon}
 
-\item{Supply.Plan}{the quantity of an item planned to be supplied in units for a given period}
+\item{Supply}{the quantity of an item planned to be supplied in units for a given period}
 
-\item{Min.Stocks.Coverage}{minimum stocks target of an item expressed in periods}
+\item{Min.Cov}{minimum stocks target of an item expressed in periods}
 
-\item{Max.Stocks.Coverage}{maximum stocks target of an item expressed in periods}
+\item{Max.Cov}{maximum stocks target of an item expressed in periods}
 }
 \value{
 a dataframe with the calculated projected inventories and coverages and the related analysis
@@ -39,5 +30,5 @@ a dataframe with the calculated projected inventories and coverages and the rela
 Calculates projected inventories and coverages and perform an analysis vs stocks targets
 }
 \examples{
-proj_inv(dataset = blueprint, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, Min.Stocks.Coverage = Min.Stocks.Coverage, Max.Stocks.Coverage = Max.Stocks.Coverage)
+proj_inv(dataset = blueprint, DFU, Period, Demand, Opening, Supply, Min.Cov, Max.Cov)
 }

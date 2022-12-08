@@ -4,27 +4,27 @@
 #' @param DFU name of an item, a SKU, or a node like an item x location
 #' @param Period a period of time monthly or weekly buckets for example
 #' @param Demand the quantity of an item planned to be consumed in units for a given period
-#' @param Opening.Inventories the opening inventories of an item in units at the beginning of the horizon
-#' @param Supply.Plan the quantity of an item planned to be supplied in units for a given period
+#' @param Opening the opening inventories of an item in units at the beginning of the horizon
+#' @param Supply the quantity of an item planned to be supplied in units for a given period
 #' @param SSCov the Safety Stock Coverage, expressed in number of periods
 #' @param DRPCovDur the Frequency of Supply, expressed in number of periods
-#' @param Reorder.Qty the Reorder Quantity, expressed in units, 1 by default or a multiple of a MOQ (Minimum Order Quantity)
-#' @param DRP.Grid defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.
+#' @param MOQ the Multiple Order Quantity, expressed in units, 1 by default or a multiple of a Minimum Order Quantity
+#' @param FH defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.
 #'
 #' @importFrom RcppRoll roll_sum
 #' @importFrom magrittr %>%
 #' @importFrom stats runif
 #' @import dplyr
 #'
-#' @return a dataframe with the calculated Replenishment Plan and realted Projected inventories and Coverages
+#' @return a dataframe with the calculated Replenishment Plan and related Projected inventories and Coverages
 #' @export
 #'
 #' @examples
-#' drp(dataset = blueprint_drp, DFU = DFU, Period = Period, Demand = Demand, Opening.Inventories = Opening.Inventories, Supply.Plan = Supply.Plan, SSCov = SSCov, DRPCovDur = DRPCovDur, Reorder.Qty = Reorder.Qty, DRP.Grid = DRP.Grid)
+#' drp(dataset = blueprint_drp, DFU, Period, Demand, Opening, Supply, SSCov, DRPCovDur, MOQ, FH)
 #'
 drp <- function(dataset, DFU, Period,
-                Demand, Opening.Inventories, Supply.Plan,
-                SSCov, DRPCovDur, Reorder.Qty, DRP.Grid) {
+                Demand, Opening, Supply,
+                SSCov, DRPCovDur, MOQ, FH) {
 
 
   # set a working df
@@ -50,7 +50,7 @@ drp <- function(dataset, DFU, Period,
   DRP_Parameters_DB <- df1 %>% select(
     DFU,
     Period,
-    SSCov, DRPCovDur, Stock.Max, Reorder.Qty, DRP.Grid
+    SSCov, DRPCovDur, Stock.Max, MOQ, FH
   )
 
 
@@ -122,7 +122,7 @@ drp <- function(dataset, DFU, Period,
 
   # to identify the Purchase Orders within the Frozen Horizon, and to keep them
   # selection of only the Expected Supply Plan within the Frozen Horizon
-  df1$adjusted.Supply.Plan.Qty <- if_else(df1$DRP.Grid == "Frozen", df1$Supply.Plan, 0)
+  df1$adjusted.Supply.Plan.Qty <- if_else(df1$FH == "Frozen", df1$Supply, 0)
 
 
 
@@ -137,13 +137,13 @@ drp <- function(dataset, DFU, Period,
     group_by(DFU, Period) %>%
     summarise(
       Demand = sum(Demand),
-      Opening.Inventories = sum(Opening.Inventories),
-      Supply.Plan = sum(adjusted.Supply.Plan.Qty)
+      Opening = sum(Opening),
+      Supply = sum(adjusted.Supply.Plan.Qty)
     ) %>%
     mutate(
       acc_Demand = cumsum(Demand),
-      acc_Opening.Inventories = cumsum(Opening.Inventories),
-      acc_Supply.Plan = cumsum(Supply.Plan)
+      acc_Opening.Inventories = cumsum(Opening),
+      acc_Supply.Plan = cumsum(Supply)
     )
 
 
@@ -156,7 +156,7 @@ drp <- function(dataset, DFU, Period,
   df1 <- df1 %>%
     group_by(
       DFU, Period,
-      Demand, Opening.Inventories, Supply.Plan
+      Demand, Opening, Supply
     ) %>%
     summarise(
       Projected.Inventories.Qty = sum(acc_Opening.Inventories) + sum(acc_Supply.Plan) - sum(acc_Demand)
@@ -649,7 +649,7 @@ drp <- function(dataset, DFU, Period,
 
   # identification of DRP calculation (to identify later its date of start)
   # DRP only starts when the Net Demand appears negative for the 1st time and outside the Frozen Horizon
-  df1$DRP.period <- if_else(df1$DRP.Grid == "Free",
+  df1$DRP.period <- if_else(df1$FH == "Free",
     if_else(df1$Negative.Net.Demand < 0, 1, 0), 0
   )
 
@@ -713,19 +713,19 @@ drp <- function(dataset, DFU, Period,
   # This has been taken into consideration previously, through the variable DRP Grid and its Frozen / Free horizon.
 
   # Basically, there are 2 types of values (or components of the DRP plan):
-  # - a periodic replenishment quantity: just the difference between Stock Max and Stock min, rounded according to the Reorder.Qty
+  # - a periodic replenishment quantity: just the difference between Stock Max and Stock min, rounded according to the MOQ
   # - an initial replenishment quantity: the first time we replenish we reach the Stock Max
 
 
   # calculate the periodic replenishment quantity
   df1$Periodic.Replenishment.Qty <- if_else(df1$DRP.index.Adjusted == "YES",
-    round(df1$Difference.Max.Min / df1$Reorder.Qty) * df1$Reorder.Qty,
+    round(df1$Difference.Max.Min / df1$MOQ) * df1$MOQ,
     0
   )
 
   # calculate the initial quantity
   df1$Initial.Replenishment.Qty <- if_else(df1$DRP.index == 1,
-    round((df1$Maximum.Stocks - df1$Projected.Inventories.Qty) / df1$Reorder.Qty) * df1$Reorder.Qty,
+    round((df1$Maximum.Stocks - df1$Projected.Inventories.Qty) / df1$MOQ) * df1$MOQ,
     0
   )
 
@@ -740,9 +740,9 @@ drp <- function(dataset, DFU, Period,
   df1$DRP.Replenishment.Qty <- df1$Initial.Replenishment.Qty + df1$Periodic.Replenishment.Qty
 
 
-  # and now we just need to add the existing Supply Plan, Putchase Orders for example, which are within the the Frozen Horizon
+  # and now we just need to add the existing Supply Plan, Purchase Orders for example, which are within the the Frozen Horizon
   # to get the complete DRP (supply) plan
-  df1$DRP.plan <- df1$Supply.Plan + df1$DRP.Replenishment.Qty
+  df1$DRP.plan <- df1$Supply + df1$DRP.Replenishment.Qty
 
 
   # Get Results
@@ -772,12 +772,12 @@ drp <- function(dataset, DFU, Period,
     group_by(DFU, Period) %>%
     summarise(
       Demand = sum(Demand),
-      Opening.Inventories = sum(Opening.Inventories),
+      Opening = sum(Opening),
       DRP.plan = sum(DRP.plan)
     ) %>%
     mutate(
       acc_Demand = cumsum(Demand),
-      acc_Opening.Inventories = cumsum(Opening.Inventories),
+      acc_Opening.Inventories = cumsum(Opening),
       acc_DRP.plan = cumsum(DRP.plan)
     )
 
@@ -791,7 +791,7 @@ drp <- function(dataset, DFU, Period,
   df1 <- df1 %>%
     group_by(
       DFU, Period,
-      Demand, Opening.Inventories, DRP.plan
+      Demand, Opening, DRP.plan
     ) %>%
     summarise(
       DRP.Projected.Inventories.Qty = sum(acc_Opening.Inventories) + sum(acc_DRP.plan) - sum(acc_Demand)
@@ -921,10 +921,10 @@ drp <- function(dataset, DFU, Period,
     DFU, Period,
 
     # Initial variables
-    Demand, Opening.Inventories, Supply.Plan,
+    Demand, Opening, Supply,
 
     # DRP parameters
-    SSCov, DRPCovDur, Stock.Max, Reorder.Qty, DRP.Grid,
+    SSCov, DRPCovDur, Stock.Max, MOQ, FH,
 
     # converted Safety and Maximum stocks in units
     Safety.Stocks,
