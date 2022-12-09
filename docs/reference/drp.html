@@ -35,7 +35,7 @@
       <a href="../articles/get_started.html">Get Started</a>
     </li>
     <li>
-      <a href="../articles/user_cases.html">user_cases</a>
+      <a href="../articles/user_cases.html">User Cases</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
@@ -57,18 +57,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">drp</span><span class="op">(</span></span>
-<span>  <span class="va">dataset</span>,</span>
-<span>  <span class="va">DFU</span>,</span>
-<span>  <span class="va">Period</span>,</span>
-<span>  <span class="va">Demand</span>,</span>
-<span>  <span class="va">Opening.Inventories</span>,</span>
-<span>  <span class="va">Supply.Plan</span>,</span>
-<span>  <span class="va">SSCov</span>,</span>
-<span>  <span class="va">DRPCovDur</span>,</span>
-<span>  <span class="va">Reorder.Qty</span>,</span>
-<span>  <span class="va">DRP.Grid</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">drp</span><span class="op">(</span><span class="va">dataset</span>, <span class="va">DFU</span>, <span class="va">Period</span>, <span class="va">Demand</span>, <span class="va">Opening</span>, <span class="va">Supply</span>, <span class="va">SSCov</span>, <span class="va">DRPCovDur</span>, <span class="va">MOQ</span>, <span class="va">FH</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -89,11 +78,11 @@
 <dd><p>the quantity of an item planned to be consumed in units for a given period</p></dd>
 
 
-<dt>Opening.Inventories</dt>
+<dt>Opening</dt>
 <dd><p>the opening inventories of an item in units at the beginning of the horizon</p></dd>
 
 
-<dt>Supply.Plan</dt>
+<dt>Supply</dt>
 <dd><p>the quantity of an item planned to be supplied in units for a given period</p></dd>
 
 
@@ -105,11 +94,11 @@
 <dd><p>the Frequency of Supply, expressed in number of periods</p></dd>
 
 
-<dt>Reorder.Qty</dt>
-<dd><p>the Reorder Quantity, expressed in units, 1 by default or a multiple of a MOQ (Minimum Order Quantity)</p></dd>
+<dt>MOQ</dt>
+<dd><p>the Multiple Order Quantity, expressed in units, 1 by default or a multiple of a Minimum Order Quantity</p></dd>
 
 
-<dt>DRP.Grid</dt>
+<dt>FH</dt>
 <dd><p>defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.</p></dd>
 
 </dl></div>
@@ -117,34 +106,33 @@
     <h2>Value</h2>
     
 
-<p>a dataframe with the calculated Replenishment Plan and realted Projected inventories and Coverages</p>
+<p>a dataframe with the calculated Replenishment Plan and related Projected inventories and Coverages</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">drp</span><span class="op">(</span>dataset <span class="op">=</span> <span class="va">blueprint_drp</span>, DFU <span class="op">=</span> <span class="va">DFU</span>, Period <span class="op">=</span> <span class="va">Period</span>, Demand <span class="op">=</span> <span class="va">Demand</span>, Opening.Inventories <span class="op">=</span> <span class="va">Opening.Inventories</span>, Supply.Plan <span class="op">=</span> <span class="va">Supply.Plan</span>, SSCov <span class="op">=</span> <span class="va">SSCov</span>, DRPCovDur <span class="op">=</span> <span class="va">DRPCovDur</span>, Reorder.Qty <span class="op">=</span> <span class="va">Reorder.Qty</span>, DRP.Grid <span class="op">=</span> <span class="va">DRP.Grid</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">drp</span><span class="op">(</span>dataset <span class="op">=</span> <span class="va">blueprint_drp</span>, <span class="va">DFU</span>, <span class="va">Period</span>, <span class="va">Demand</span>, <span class="va">Opening</span>, <span class="va">Supply</span>, <span class="va">SSCov</span>, <span class="va">DRPCovDur</span>, <span class="va">MOQ</span>, <span class="va">FH</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("DFU", "Period")</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("DFU", "Period")</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("DFU", "Period")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 520 × 15</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Groups:   DFU [10]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    DFU   Period     Demand Openi…¹ Suppl…² SSCov DRPCo…³ Stock…⁴ Reord…⁵ DRP.G…⁶</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Item… 2022-07-03    364    <span style="text-decoration: underline;">6</span>570       0     4       4       8       1 Frozen </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Item… 2022-07-10    364       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Item… 2022-07-17    364       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Item… 2022-07-24    260       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Item… 2022-07-31    736       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Item… 2022-08-07    859       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Item… 2022-08-14    859       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Item… 2022-08-21    859       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Item… 2022-08-28    273       0       0     4       4       8       1 Free   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Item… 2022-09-04    349       0       0     4       4       8       1 Free   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    DFU        Period     Demand Opening Supply SSCov DRPCo…¹ Stock…²   MOQ FH   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Item 0000… 2022-07-03    364    <span style="text-decoration: underline;">6</span>570      0     4       4       8     1 Froz…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Item 0000… 2022-07-10    364       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Item 0000… 2022-07-17    364       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Item 0000… 2022-07-24    260       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Item 0000… 2022-07-31    736       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Item 0000… 2022-08-07    859       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Item 0000… 2022-08-14    859       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Item 0000… 2022-08-21    859       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Item 0000… 2022-08-28    273       0      0     4       4       8     1 Free </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Item 0000… 2022-09-04    349       0      0     4       4       8     1 Free </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 510 more rows, 5 more variables: Safety.Stocks &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   Maximum.Stocks &lt;dbl&gt;, DRP.Calculated.Coverage.in.Periods &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   DRP.Projected.Inventories.Qty &lt;dbl&gt;, DRP.plan &lt;dbl&gt;, and abbreviated</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​Opening.Inventories, ²​Supply.Plan, ³​DRPCovDur, ⁴​Stock.Max,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁵​Reorder.Qty, ⁶​DRP.Grid</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​DRPCovDur, ²​Stock.Max</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

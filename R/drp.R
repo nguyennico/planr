@@ -27,6 +27,26 @@ drp <- function(dataset, DFU, Period,
                 SSCov, DRPCovDur, MOQ, FH) {
 
 
+  # avoid "no visible binding for global variable"
+  Demand <- Opening <- Supply <- SSCov <- DRPCovDur <- MOQ <- FH <- NULL
+
+  Stock.Max <- NULL
+  adjusted.Supply.Plan.Qty <- NULL
+
+  acc_Demand <- acc_Opening.Inventories <- acc_Supply.Plan <- NULL
+
+  Shifted.Demand <- NULL
+
+  DRP.period <- DRP.plan <- acc_DRP.plan <- DRP.Projected.Inventories.Qty <- NULL
+
+  DRP.Calculated.Coverage.in.Periods <- NULL
+  DRP.Projected.Inventories.Qty <- NULL
+  random.demand <- NULL
+
+  Safety.Stocks <- NULL
+  Maximum.Stocks <- NULL
+
+
   # set a working df
   df1 <- dataset
 

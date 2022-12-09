@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 
 
-```{r setup, warning = FALSE, message = FALSE, eval=FALSE}
+```{r setup, warning = FALSE, message = FALSE}
 
 library(tidyverse)
 library(dplyr)
@@ -51,7 +51,7 @@ Let's look at the demo dataset blueprint_light.
 
 The raw data look like this:
 
-```{r, eval=FALSE}
+```{r}
 
 df1 <- blueprint_light
 
@@ -60,7 +60,7 @@ glimpse(df1)
 ```
 Let's have a summary view, using the reactable package:
 
-```{r, eval=FALSE}
+```{r}
 
 
 
@@ -74,12 +74,12 @@ df1 <- blueprint_light
 # aggregate
 df1 <- df1 %>% select(DFU, 
                          Demand,
-                         Opening.Inventories,
-                         Supply.Plan) %>%
+                         Opening,
+                         Supply) %>%
       group_by(DFU) %>%
       summarise(Demand = sum(Demand),
-                Opening.Inventories = sum(Opening.Inventories),
-                Supply.Plan = sum(Supply.Plan)
+                Opening = sum(Opening),
+                Supply = sum(Supply)
       )
     
 # let's calculate the share of Demand
@@ -133,7 +133,7 @@ Demand_Sparklines_DB <- df1
 df1 <- blueprint_light
     
 # replace missing values by zero
-df1$Supply.Plan[is.na(df1$Supply.Plan)] <- 0
+df1$Supply[is.na(df1$Supply)] <- 0
     
 # aggregate
 df1 <- df1 %>%
@@ -142,7 +142,7 @@ df1 <- df1 %>%
         Period
       ) %>%
       summarise(
-        Quantity = sum(Supply.Plan)
+        Quantity = sum(Supply)
       )
     
     # generate Sparkline
@@ -166,8 +166,8 @@ df1 <- left_join(df1, Supply_Sparklines_DB)
 
 
 # reorder columns
-df1 <- df1 %>% select(DFU, Demand, Demand.pc, Demand.Quantity, Opening.Inventories,
-                      Supply.Plan, Supply.Quantity)
+df1 <- df1 %>% select(DFU, Demand, Demand.pc, Demand.Quantity, Opening,
+                      Supply, Supply.Quantity)
 
 
 # get results
@@ -180,7 +180,7 @@ glimpse(Summary_DB)
 
 and now let's create the reactable :
 
-```{r, eval=FALSE}
+```{r}
 
 reactable(df1,compact = TRUE,
               
@@ -207,7 +207,7 @@ reactable(df1,compact = TRUE,
                 ), # close %
                 
                 
-                `Supply.Plan`= colDef(
+                `Supply`= colDef(
                   name = "Total Supply (units)",
                   aggregate = "sum", footer = function(values) formatC(sum(values),format="f", big.mark=",", digits=0),
                   format = colFormat(separators = TRUE, digits=0)
@@ -215,7 +215,7 @@ reactable(df1,compact = TRUE,
                 
                 
                 
-                `Opening.Inventories`= colDef(
+                `Opening`= colDef(
                   name = "Opening Inventories (C9L)",
                   aggregate = "sum", footer = function(values) formatC(sum(values),format="f", big.mark=",", digits=0),
                   format = colFormat(separators = TRUE, digits=0)
@@ -257,7 +257,7 @@ reactable(df1,compact = TRUE,
                                      "Demand.Quantity")),
                 
                 colGroup(name = "Supply",
-                         columns = c("Supply.Plan", "Supply.Quantity"))
+                         columns = c("Supply", "Supply.Quantity"))
                 
                 
               )
@@ -268,21 +268,28 @@ reactable(df1,compact = TRUE,
 ```
 
 
-## 1.2) Calculate Projected Inventories
+### 1.2) Calculate Projected Inventories
 
 
 ```{r}
 
 
 # set a working df
-
+df1 <- blueprint_light
 
 # rename columns
+# df1 <- df1 %>% rename(
+#   Opening = Opening.Inventories,
+#   Supply = Supply.Plan
+# )
 
 
+df1 <- as.data.frame(df1)
+
+glimpse(df1)
 
 # calculate
-calculated_projection <- light_proj_inv(dataset = my_demand_and_suppply, 
+calculated_projection <- light_proj_inv(dataset = df1, 
                                         DFU = DFU, 
                                         Period = Period, 
                                         Demand =  Demand, 
@@ -297,7 +304,7 @@ head(calculated_projection)
 
 
 
-## 1.3) Projected Inventories Analysis
+### 1.3) Projected Inventories Analysis
 
 
 ## DRP

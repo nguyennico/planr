@@ -28,6 +28,13 @@ light_proj_inv <- function(dataset,
 
 
 
+  # avoid "no visible binding for global variable"
+  Demand <- Opening <- Supply <- acc_Demand <- acc_Opening.Inventories <- acc_Supply.Plan <- NULL
+  Shifted.Demand <- NULL
+  Calculated.Coverage.in.Periods <- NULL
+  Projected.Inventories.Qty <- NULL
+  random.demand <- NULL
+
   # set a working df
   df1 <- dataset
 
