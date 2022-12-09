@@ -24,6 +24,21 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening, Supply,
 
 
 
+  # avoid "no visible binding for global variable"
+  Demand <- Opening <- Supply <- Min.Cov <- Max.Cov <- NULL
+
+  acc_Demand <- acc_Opening.Inventories <- acc_Supply.Plan <- NULL
+
+  Shifted.Demand <- NULL
+  Calculated.Coverage.in.Periods <- NULL
+  Projected.Inventories.Qty <- NULL
+  random.demand <- NULL
+
+  Safety.Stocks <- NULL
+  Maximum.Stocks <- NULL
+
+
+
 
   # set a working df
   df1 <- dataset

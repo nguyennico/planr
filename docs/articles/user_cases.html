@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>user_cases • planr</title>
+<title>User Cases • planr</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="user_cases">
+<script src="../pkgdown.js"></script><meta property="og:title" content="User Cases">
 <meta property="og:description" content="planr">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -60,7 +60,7 @@
       <a href="../articles/get_started.html">Get Started</a>
     </li>
     <li>
-      <a href="../articles/user_cases.html">user_cases</a>
+      <a href="../articles/user_cases.html">User Cases</a>
     </li>
   </ul>
 </li>
@@ -75,10 +75,11 @@
 
       
 
-      </header><div class="row">
+      </header><script src="user_cases_files/core-js-2.5.3/shim.min.js"></script><script src="user_cases_files/react-17.0.0/react.min.js"></script><script src="user_cases_files/react-17.0.0/react-dom.min.js"></script><script src="user_cases_files/reactwidget-1.0.0/react-tools.js"></script><script src="user_cases_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="user_cases_files/reactable-binding-0.3.0/reactable.js"></script><link href="user_cases_files/jquery-sparkline-2.1.2/jquery.sparkline.css" rel="stylesheet">
+<script src="user_cases_files/jquery-sparkline-2.1.2/jquery.sparkline.js"></script><script src="user_cases_files/sparkline-binding-2.0/sparkline.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>user_cases</h1>
+      <h1 data-toc-skip>User Cases</h1>
             
       
       
@@ -89,23 +90,316 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">planr</span><span class="op">)</span></span></code></pre></div>
-<p>Some examples to apply the planr functions.</p>
+<code class="sourceCode R"><span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># for the tables</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://glin.github.io/reactable/" class="external-link">reactable</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://kcuilla.github.io/reactablefmtr/" class="external-link">reactablefmtr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">sparkline</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># for the charts</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jkunst.com/highcharter/" class="external-link">highcharter</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># the library planr</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">planr</span><span class="op">)</span></span></code></pre></div>
+<p>Some examples to apply the planr functions for portfolios</p>
 <div class="section level2">
-<h2 id="portfolio-calculations">Portfolio Calculations<a class="anchor" aria-label="anchor" href="#portfolio-calculations"></a>
+<h2 id="part-1-projected-inventories-coverages">Part 1) Projected Inventories &amp; Coverages<a class="anchor" aria-label="anchor" href="#part-1-projected-inventories-coverages"></a>
 </h2>
 <div class="section level3">
-<h3 id="projected-inventories-coverages">Projected Inventories &amp; Coverages<a class="anchor" aria-label="anchor" href="#projected-inventories-coverages"></a>
+<h3 id="overview-demo-dataset">1.1) Overview Demo dataset<a class="anchor" aria-label="anchor" href="#overview-demo-dataset"></a>
 </h3>
+<p>Let’s look at the demo dataset blueprint_light.</p>
+<p>The raw data look like this:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">blueprint_light</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 520</span></span>
+<span><span class="co">#&gt; Columns: 5</span></span>
+<span><span class="co">#&gt; $ DFU     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Item 000001", "Item 000002", "Item 000003", "Item 000004", "I…</span></span>
+<span><span class="co">#&gt; $ Period  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2022-07-03, 2022-07-03, 2022-07-03, 2022-07-03, 2022-07-03, 2…</span></span>
+<span><span class="co">#&gt; $ Demand  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 364, 1419, 265, 1296, 265, 1141, 126, 6859, 66, 380, 364, 1419…</span></span>
+<span><span class="co">#&gt; $ Opening <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6570, 5509, 2494, 7172, 1464, 9954, 2092, 17772, 1222, 3411, 0…</span></span>
+<span><span class="co">#&gt; $ Supply  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span></code></pre></div>
+<p>Let’s have a summary view, using the reactable package:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span></span>
+<span></span>
+<span><span class="co">#-----------------</span></span>
+<span><span class="co"># Get Summary of variables</span></span>
+<span><span class="co">#-----------------</span></span>
+<span></span>
+<span><span class="co"># set a working df</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">blueprint_light</span></span>
+<span></span>
+<span><span class="co"># aggregate</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">df1</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">DFU</span>, </span>
+<span>                         <span class="va">Demand</span>,</span>
+<span>                         <span class="va">Opening</span>,</span>
+<span>                         <span class="va">Supply</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">DFU</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>Demand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Demand</span><span class="op">)</span>,</span>
+<span>                Opening <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Opening</span><span class="op">)</span>,</span>
+<span>                Supply <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Supply</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    </span>
+<span><span class="co"># let's calculate the share of Demand</span></span>
+<span><span class="va">df1</span><span class="op">$</span><span class="va">Demand.pc</span> <span class="op">&lt;-</span> <span class="va">df1</span><span class="op">$</span><span class="va">Demand</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">Demand</span><span class="op">)</span></span>
+<span>    </span>
+<span>    </span>
+<span><span class="co"># keep Results</span></span>
+<span><span class="va">Value_DB</span> <span class="op">&lt;-</span> <span class="va">df1</span></span>
+<span>    </span>
+<span></span>
+<span> </span>
+<span>    </span>
+<span><span class="co">#-----------------</span></span>
+<span><span class="co"># Get Sparklines Demand</span></span>
+<span><span class="co">#-----------------</span></span>
+<span>    </span>
+<span><span class="co"># set a working df</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">blueprint_light</span></span>
+<span>    </span>
+<span><span class="co"># replace missing values by zero</span></span>
+<span><span class="va">df1</span><span class="op">$</span><span class="va">Demand</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">Demand</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span>    </span>
+<span><span class="co"># aggregate</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">df1</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span></span>
+<span>        <span class="va">DFU</span>,</span>
+<span>        <span class="va">Period</span></span>
+<span>      <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>        Quantity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Demand</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'DFU'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span>    </span>
+<span>    <span class="co"># generate Sparkline</span></span>
+<span>    <span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">df1</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">DFU</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>Demand.Quantity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">Quantity</span><span class="op">)</span><span class="op">)</span></span>
+<span>    </span>
+<span><span class="co"># keep Results</span></span>
+<span><span class="va">Demand_Sparklines_DB</span> <span class="op">&lt;-</span> <span class="va">df1</span></span>
+<span></span>
+<span>    </span>
+<span><span class="co">#-----------------</span></span>
+<span><span class="co"># Get Sparklines Supply</span></span>
+<span><span class="co">#-----------------</span></span>
+<span>    </span>
+<span><span class="co"># set a working df</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">blueprint_light</span></span>
+<span>    </span>
+<span><span class="co"># replace missing values by zero</span></span>
+<span><span class="va">df1</span><span class="op">$</span><span class="va">Supply</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">Supply</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span>    </span>
+<span><span class="co"># aggregate</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">df1</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span></span>
+<span>        <span class="va">DFU</span>,</span>
+<span>        <span class="va">Period</span></span>
+<span>      <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>        Quantity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Supply</span><span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'DFU'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span>    </span>
+<span>    <span class="co"># generate Sparkline</span></span>
+<span>    <span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">df1</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">DFU</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>Supply.Quantity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">Quantity</span><span class="op">)</span><span class="op">)</span></span>
+<span>    </span>
+<span><span class="co"># keep Results</span></span>
+<span><span class="va">Supply_Sparklines_DB</span> <span class="op">&lt;-</span> <span class="va">df1</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="co">#-----------------</span></span>
+<span><span class="co"># Merge dataframes</span></span>
+<span><span class="co">#-----------------</span></span>
+<span></span>
+<span><span class="co"># merge</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">Value_DB</span>, <span class="va">Demand_Sparklines_DB</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Joining, by = "DFU"</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">Supply_Sparklines_DB</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Joining, by = "DFU"</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># reorder columns</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">df1</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">DFU</span>, <span class="va">Demand</span>, <span class="va">Demand.pc</span>, <span class="va">Demand.Quantity</span>, <span class="va">Opening</span>,</span>
+<span>                      <span class="va">Supply</span>, <span class="va">Supply.Quantity</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># get results</span></span>
+<span><span class="va">Summary_DB</span> <span class="op">&lt;-</span> <span class="va">df1</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">Summary_DB</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 10</span></span>
+<span><span class="co">#&gt; Columns: 7</span></span>
+<span><span class="co">#&gt; $ DFU             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Item 000001", "Item 000002", "Item 000003", "Item 000…</span></span>
+<span><span class="co">#&gt; $ Demand          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14923, 25060, 5975, 28289, 3108, 54470, 7676, 114532, …</span></span>
+<span><span class="co">#&gt; $ Demand.pc       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.05646107, 0.09481434, 0.02260637, 0.10703124, 0.0117…</span></span>
+<span><span class="co">#&gt; $ Demand.Quantity <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;364, 364, 364, 260, 736, 859, 859, 859, 273, 349, 34…</span></span>
+<span><span class="co">#&gt; $ Opening         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6570, 5509, 2494, 7172, 1464, 9954, 2092, 17772, 1222,…</span></span>
+<span><span class="co">#&gt; $ Supply          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6187, 17927, 3000, 20000, 1187, 21660, 6347, 51450, 79…</span></span>
+<span><span class="co">#&gt; $ Supply.Quantity <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5000, 0, 0…</span></span></code></pre></div>
+<p>and now let’s create the reactable :</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://glin.github.io/reactable/reference/reactable.html" class="external-link">reactable</a></span><span class="op">(</span><span class="va">df1</span>,compact <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>              </span>
+<span>              defaultSortOrder <span class="op">=</span> <span class="st">"desc"</span>,</span>
+<span>              defaultSorted <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Demand"</span><span class="op">)</span>,</span>
+<span>              defaultPageSize <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>              </span>
+<span>              columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>                </span>
+<span>                `DFU` <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"DFU"</span><span class="op">)</span>,</span>
+<span></span>
+<span>                </span>
+<span>                `Demand`<span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span></span>
+<span>                  name <span class="op">=</span> <span class="st">"Total Demand (units)"</span>,</span>
+<span>                  aggregate <span class="op">=</span> <span class="st">"sum"</span>, footer <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>,format<span class="op">=</span><span class="st">"f"</span>, big.mark<span class="op">=</span><span class="st">","</span>, digits<span class="op">=</span><span class="fl">0</span><span class="op">)</span>,</span>
+<span>                  format <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colFormat.html" class="external-link">colFormat</a></span><span class="op">(</span>separators <span class="op">=</span> <span class="cn">TRUE</span>, digits<span class="op">=</span><span class="fl">0</span><span class="op">)</span>,</span>
+<span>                  style <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>background <span class="op">=</span> <span class="st">"yellow"</span>,fontWeight <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span>
+<span>                <span class="op">)</span>,</span>
+<span>                </span>
+<span>                </span>
+<span>                `Demand.pc`<span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span></span>
+<span>                  name <span class="op">=</span> <span class="st">"Share of Demand (%)"</span>,</span>
+<span>                  format <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colFormat.html" class="external-link">colFormat</a></span><span class="op">(</span>percent <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>                <span class="op">)</span>, <span class="co"># close %</span></span>
+<span>                </span>
+<span>                </span>
+<span>                `Supply`<span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span></span>
+<span>                  name <span class="op">=</span> <span class="st">"Total Supply (units)"</span>,</span>
+<span>                  aggregate <span class="op">=</span> <span class="st">"sum"</span>, footer <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>,format<span class="op">=</span><span class="st">"f"</span>, big.mark<span class="op">=</span><span class="st">","</span>, digits<span class="op">=</span><span class="fl">0</span><span class="op">)</span>,</span>
+<span>                  format <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colFormat.html" class="external-link">colFormat</a></span><span class="op">(</span>separators <span class="op">=</span> <span class="cn">TRUE</span>, digits<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+<span>                <span class="op">)</span>,</span>
+<span>                </span>
+<span>                </span>
+<span>                </span>
+<span>                `Opening`<span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span></span>
+<span>                  name <span class="op">=</span> <span class="st">"Opening Inventories (C9L)"</span>,</span>
+<span>                  aggregate <span class="op">=</span> <span class="st">"sum"</span>, footer <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>,format<span class="op">=</span><span class="st">"f"</span>, big.mark<span class="op">=</span><span class="st">","</span>, digits<span class="op">=</span><span class="fl">0</span><span class="op">)</span>,</span>
+<span>                  format <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colFormat.html" class="external-link">colFormat</a></span><span class="op">(</span>separators <span class="op">=</span> <span class="cn">TRUE</span>, digits<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
+<span>                <span class="op">)</span>,</span>
+<span>                </span>
+<span>                </span>
+<span>                Demand.Quantity <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span></span>
+<span>                  name <span class="op">=</span> <span class="st">"Projected Demand"</span>,</span>
+<span>                  cell <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">value</span>, <span class="va">index</span><span class="op">)</span> <span class="op">{</span></span>
+<span>                    <span class="fu"><a href="https://rdrr.io/pkg/sparkline/man/sparkline.html" class="external-link">sparkline</a></span><span class="op">(</span><span class="va">df1</span><span class="op">$</span><span class="va">Demand.Quantity</span><span class="op">[[</span><span class="va">index</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>                  <span class="op">}</span><span class="op">)</span>,</span>
+<span>                </span>
+<span></span>
+<span>                </span>
+<span>                </span>
+<span>                Supply.Quantity <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span></span>
+<span>                  name <span class="op">=</span> <span class="st">"Projected Supply"</span>,</span>
+<span>                  cell <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span><span class="op">)</span> <span class="op">{</span></span>
+<span>                    <span class="fu"><a href="https://rdrr.io/pkg/sparkline/man/sparkline.html" class="external-link">sparkline</a></span><span class="op">(</span><span class="va">values</span>, type <span class="op">=</span> <span class="st">"bar"</span></span>
+<span>                              <span class="co">#chartRangeMin = 0, chartRangeMax = max(chickwts$weight)</span></span>
+<span>                    <span class="op">)</span></span>
+<span>                  <span class="op">}</span><span class="op">)</span></span>
+<span>                </span>
+<span></span>
+<span></span>
+<span> </span>
+<span>                </span>
+<span>                </span>
+<span>              <span class="op">)</span>, <span class="co"># close columns list</span></span>
+<span>              </span>
+<span>              defaultColDef <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html" class="external-link">colDef</a></span><span class="op">(</span>footerStyle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fontWeight <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>              </span>
+<span>              </span>
+<span>              columnGroups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>                </span>
+<span>                <span class="fu"><a href="https://glin.github.io/reactable/reference/colGroup.html" class="external-link">colGroup</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Demand"</span>,</span>
+<span>                         columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Demand"</span>,</span>
+<span>                                     <span class="st">"Demand.pc"</span>,</span>
+<span>                                     <span class="st">"Demand.Quantity"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                </span>
+<span>                <span class="fu"><a href="https://glin.github.io/reactable/reference/colGroup.html" class="external-link">colGroup</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Supply"</span>,</span>
+<span>                         columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Supply"</span>, <span class="st">"Supply.Quantity"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                </span>
+<span>                </span>
+<span>              <span class="op">)</span></span>
+<span>          </span>
+<span><span class="op">)</span> <span class="co"># close reactable</span></span></code></pre></div>
+<div id="htmlwidget-638dbf3405daaea61e71" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-638dbf3405daaea61e71">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DFU":["Item 000001","Item 000002","Item 000003","Item 000004","Item 000005","Item 000006","Item 000007","Item 000008","Item 000009","Item 000010"],"Demand":[14923,25060,5975,28289,3108,54470,7676,114532,3177,7096],"Demand.pc":[0.0564610716366636,0.0948143439800837,0.022606372916241,0.107031244088292,0.0117590974098204,0.206086884141866,0.0290420951472914,0.433331063237308,0.0120201584527025,0.0268476689897316],"Demand.Quantity":[[364,364,364,260,736,859,859,859,273,349,349,349,200,0,0,0,0,367,514,514,514,506,837,837,837,479,69,62,52,82,107,187,187,187,81,73,0,0,27,187,187,187,161,161,187,187,187,107,187,187,187,107],[1419,1419,1419,1014,721,841,841,841,1160,2427,2427,2427,1502,807,807,807,692,510,714,714,714,216,28,28,28,16,26,26,26,26,0,0,0,0,16,28,28,28,18,39,39,39,33,21,24,24,24,9,13,13,13,8],[265,265,265,189,29,34,34,34,23,42,42,42,50,178,178,178,152,24,34,34,34,41,72,72,72,42,243,243,243,243,90,156,156,156,150,145,145,145,83,145,145,145,124,46,53,53,53,70,145,145,145,83],[1296,1296,1296,926,678,791,791,791,560,1042,1042,1042,785,1329,1329,1329,1139,1452,2032,2032,2032,653,169,169,169,97,96,96,96,96,42,72,72,72,72,72,72,72,48,121,121,121,103,62,72,72,72,42,72,72,72,42],[265,265,265,189,59,69,69,69,40,69,69,69,49,69,69,69,59,49,69,69,69,49,69,69,69,40,31,31,31,31,18,31,31,31,31,31,31,31,18,31,31,31,26,26,31,31,31,18,31,31,31,18],[1141,1141,1141,815,1466,1711,1711,1711,943,1630,1630,1630,1176,1711,1711,1711,1466,1222,1711,1711,1711,489,823,702,697,919,816,608,726,716,532,904,978,698,990,617,880,938,779,713,628,959,617,561,656,949,843,558,971,821,627,955],[126,126,126,90,325,379,379,379,251,460,460,460,309,325,325,325,278,78,109,109,109,43,28,28,28,16,81,77,95,97,63,91,97,65,92,78,62,60,92,69,98,85,83,88,70,61,62,51,64,74,61,89],[6859,6859,6859,4900,1358,1585,1585,1585,2023,4191,4191,4191,3230,5841,5841,5841,5007,2452,3432,3432,3432,1999,2376,2376,2376,1358,744,850,500,903,802,596,683,864,768,713,637,688,670,759,918,773,722,867,655,994,689,777,742,576,776,687],[66,66,66,48,85,100,100,100,15,54,54,90,65,98,98,51,82,48,66,66,66,19,89,72,83,88,66,66,66,66,0,0,0,0,38,66,66,66,29,59,72,52,97,84,73,51,60,29,66,66,66,38],[380,380,380,272,169,197,197,197,93,151,151,151,103,117,117,117,100,70,97,97,97,81,123,123,123,71,271,271,271,271,77,134,134,134,96,67,67,67,39,73,73,73,63,110,128,128,128,45,62,62,62,36]],"Opening":[6570,5509,2494,7172,1464,9954,2092,17772,1222,3411],"Supply":[6187,17927,3000,20000,1187,21660,6347,51450,791,4440],"Supply.Quantity":[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,5000,0,0,0,0,0,0,0,1187,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,10367,0,0,0,0,4753,0,0,0,0,1944,647,0,0,0,0,0,0,0,216,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,10000,0,0,0,0,0,0,0,0,0,0,0,0,10000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,1187,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,7980,0,0,0,0,9576,0,0,0,0,4104,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,2593,0,0,0,0,0,0,0,0,0,107,540,0,0,0,0,0,107,0,0,0,0,0,0,0,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,12012,0,10000,0,0,0,1453,2244,0,0,0,16104,9504,0,0,0,0,0,0,0,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,527,0,0,0,0,0,0,0,264,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,600,0,0,0,0,0,0,1920,1920,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]},"columns":[{"accessor":"DFU","name":"DFU","type":"character","footerStyle":{"fontWeight":"bold"}},{"accessor":"Demand","name":"Total Demand (units)","type":"numeric","footerStyle":{"fontWeight":"bold"},"aggregate":"sum","format":{"cell":{"digits":0,"separators":true},"aggregated":{"digits":0,"separators":true}},"footer":"264,306","style":{"background":"yellow","fontWeight":"bold"}},{"accessor":"Demand.pc","name":"Share of Demand (%)","type":"numeric","footerStyle":{"fontWeight":"bold"},"format":{"cell":{"digits":1,"percent":true},"aggregated":{"digits":1,"percent":true}}},{"accessor":"Demand.Quantity","name":"Projected Demand","type":"list","footerStyle":{"fontWeight":"bold"},"cell":[{"name":"WidgetContainer","attribs":{"key":"72cfaa63122f5ab8d7ff38af88c1a2e6"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-45bf93a86530c99c0410","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-45bf93a86530c99c0410"},"children":["{\"x\":{\"values\":[364,364,364,260,736,859,859,859,273,349,349,349,200,0,0,0,0,367,514,514,514,506,837,837,837,479,69,62,52,82,107,187,187,187,81,73,0,0,27,187,187,187,161,161,187,187,187,107,187,187,187,107],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"d6c37793c595d31280d022e42ad176d7"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-4aef4e62c5572b24a4f1","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-4aef4e62c5572b24a4f1"},"children":["{\"x\":{\"values\":[1419,1419,1419,1014,721,841,841,841,1160,2427,2427,2427,1502,807,807,807,692,510,714,714,714,216,28,28,28,16,26,26,26,26,0,0,0,0,16,28,28,28,18,39,39,39,33,21,24,24,24,9,13,13,13,8],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"9f40eb22c8ab2f3cdde3c2d68f5e46ee"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-8df5b57c9db438e2c03e","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-8df5b57c9db438e2c03e"},"children":["{\"x\":{\"values\":[265,265,265,189,29,34,34,34,23,42,42,42,50,178,178,178,152,24,34,34,34,41,72,72,72,42,243,243,243,243,90,156,156,156,150,145,145,145,83,145,145,145,124,46,53,53,53,70,145,145,145,83],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"b810fc56c1d7ba11067bc61458614835"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-82d6444de9f3f670fd9c","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-82d6444de9f3f670fd9c"},"children":["{\"x\":{\"values\":[1296,1296,1296,926,678,791,791,791,560,1042,1042,1042,785,1329,1329,1329,1139,1452,2032,2032,2032,653,169,169,169,97,96,96,96,96,42,72,72,72,72,72,72,72,48,121,121,121,103,62,72,72,72,42,72,72,72,42],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"d50d949d1e1dfde687cfd4a5cd3f7a58"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-cdae3f7aa758a5950ff6","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-cdae3f7aa758a5950ff6"},"children":["{\"x\":{\"values\":[265,265,265,189,59,69,69,69,40,69,69,69,49,69,69,69,59,49,69,69,69,49,69,69,69,40,31,31,31,31,18,31,31,31,31,31,31,31,18,31,31,31,26,26,31,31,31,18,31,31,31,18],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"2469dfd0697abbae86a8eb7feeef0cf1"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-2c0100a6f1f7b53b476c","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-2c0100a6f1f7b53b476c"},"children":["{\"x\":{\"values\":[1141,1141,1141,815,1466,1711,1711,1711,943,1630,1630,1630,1176,1711,1711,1711,1466,1222,1711,1711,1711,489,823,702,697,919,816,608,726,716,532,904,978,698,990,617,880,938,779,713,628,959,617,561,656,949,843,558,971,821,627,955],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"1761bac430fd3b5ac598602a6266c26f"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-6cae1646f835f401436d","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-6cae1646f835f401436d"},"children":["{\"x\":{\"values\":[126,126,126,90,325,379,379,379,251,460,460,460,309,325,325,325,278,78,109,109,109,43,28,28,28,16,81,77,95,97,63,91,97,65,92,78,62,60,92,69,98,85,83,88,70,61,62,51,64,74,61,89],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"97fac4b0c065ed9f20ced019fd143e20"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-3b375efd9c0f767fa973","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-3b375efd9c0f767fa973"},"children":["{\"x\":{\"values\":[6859,6859,6859,4900,1358,1585,1585,1585,2023,4191,4191,4191,3230,5841,5841,5841,5007,2452,3432,3432,3432,1999,2376,2376,2376,1358,744,850,500,903,802,596,683,864,768,713,637,688,670,759,918,773,722,867,655,994,689,777,742,576,776,687],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"125b46e4c01e00cc19b19361625bb699"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-a8fb8cbd3fce45539058","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-a8fb8cbd3fce45539058"},"children":["{\"x\":{\"values\":[66,66,66,48,85,100,100,100,15,54,54,90,65,98,98,51,82,48,66,66,66,19,89,72,83,88,66,66,66,66,0,0,0,0,38,66,66,66,29,59,72,52,97,84,73,51,60,29,66,66,66,38],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"b29ceff6d16ffc2c07a21d178084dacb"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-4bce2618eff5e65d875a","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-4bce2618eff5e65d875a"},"children":["{\"x\":{\"values\":[380,380,380,272,169,197,197,197,93,151,151,151,103,117,117,117,100,70,97,97,97,81,123,123,123,71,271,271,271,271,77,134,134,134,96,67,67,67,39,73,73,73,63,110,128,128,128,45,62,62,62,36],\"options\":{\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]}]},{"accessor":"Opening","name":"Opening Inventories (C9L)","type":"numeric","footerStyle":{"fontWeight":"bold"},"aggregate":"sum","format":{"cell":{"digits":0,"separators":true},"aggregated":{"digits":0,"separators":true}},"footer":"57,660"},{"accessor":"Supply","name":"Total Supply (units)","type":"numeric","footerStyle":{"fontWeight":"bold"},"aggregate":"sum","format":{"cell":{"digits":0,"separators":true},"aggregated":{"digits":0,"separators":true}},"footer":"132,989"},{"accessor":"Supply.Quantity","name":"Projected Supply","type":"list","footerStyle":{"fontWeight":"bold"},"cell":[{"name":"WidgetContainer","attribs":{"key":"07b138716a3cf41be9130b5b5fa9edb3"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-10f966f0222dd919ff13","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-10f966f0222dd919ff13"},"children":["{\"x\":{\"values\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,5000,0,0,0,0,0,0,0,1187,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"9ea7597f50490c1f2c3f98af110e1ccd"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-bac96cd199374232fa8a","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-bac96cd199374232fa8a"},"children":["{\"x\":{\"values\":[0,0,0,10367,0,0,0,0,4753,0,0,0,0,1944,647,0,0,0,0,0,0,0,216,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"dba73d4bf4f78a11ad8472476864cc6e"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-5d5c79d479c42b394014","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-5d5c79d479c42b394014"},"children":["{\"x\":{\"values\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"658b79ee13aa9116c0a38a51b303eecc"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-e9b07f5e7de6629bc30b","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-e9b07f5e7de6629bc30b"},"children":["{\"x\":{\"values\":[0,0,0,0,0,0,0,10000,0,0,0,0,0,0,0,0,0,0,0,0,10000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"ddaf59c2449cc8d76f0862ff3844d3fe"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-e2703969c9748bf1b792","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-e2703969c9748bf1b792"},"children":["{\"x\":{\"values\":[0,0,0,0,0,0,0,0,1187,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"1768fb15b7a64f3bece8fe3ce1cb7d3a"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-e9d34d36e24830799cb4","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-e9d34d36e24830799cb4"},"children":["{\"x\":{\"values\":[0,0,0,7980,0,0,0,0,9576,0,0,0,0,4104,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"51d76a1a07dbcd8280542a734bdd1345"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-5df0cd206b28fe33e82f","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-5df0cd206b28fe33e82f"},"children":["{\"x\":{\"values\":[0,0,0,2593,0,0,0,0,0,0,0,0,0,107,540,0,0,0,0,0,107,0,0,0,0,0,0,0,3000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"e54ee6a6dfa6e45afe6d65e5fa99d348"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-7d0a4574282322ec0ece","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-7d0a4574282322ec0ece"},"children":["{\"x\":{\"values\":[0,0,12012,0,10000,0,0,0,1453,2244,0,0,0,16104,9504,0,0,0,0,0,0,0,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"e941a1979383ecbaa24bfeda0327ea65"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-ee597f54df5a0e75317d","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-ee597f54df5a0e75317d"},"children":["{\"x\":{\"values\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,527,0,0,0,0,0,0,0,264,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]},{"name":"WidgetContainer","attribs":{"key":"f9565d840b83278dcd3a1e0a5a509292"},"children":[{"name":"Fragment","attribs":[],"children":[{"name":"span","attribs":{"id":"htmlwidget-e947b670609a0847a2f8","className":"sparkline html-widget"},"children":[]},{"name":"script","attribs":{"type":"application/json","data-for":"htmlwidget-e947b670609a0847a2f8"},"children":["{\"x\":{\"values\":[0,0,0,0,0,600,0,0,0,0,0,0,1920,1920,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"options\":{\"type\":\"bar\",\"height\":20,\"width\":60},\"width\":60,\"height\":20},\"evals\":[],\"jsHooks\":[]}"]}]}]}]}],"columnGroups":[{"name":"Demand","columns":["Demand","Demand.pc","Demand.Quantity"]},{"name":"Supply","columns":["Supply","Supply.Quantity"]}],"defaultSortDesc":true,"defaultSorted":[{"id":"Demand","desc":true}],"defaultPageSize":20,"paginationType":"numbers","showPageInfo":true,"minRows":1,"compact":true,"dataKey":"f9b8c9c6086e351fec508ec9f26de40f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="section level3">
-<h3 id="projected-inventories-analysis">Projected Inventories Analysis<a class="anchor" aria-label="anchor" href="#projected-inventories-analysis"></a>
+<h3 id="calculate-projected-inventories">1.2) Calculate Projected Inventories<a class="anchor" aria-label="anchor" href="#calculate-projected-inventories"></a>
 </h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span></span>
+<span><span class="co"># set a working df</span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="va">blueprint_light</span></span>
+<span></span>
+<span><span class="co"># rename columns</span></span>
+<span><span class="co"># df1 &lt;- df1 %&gt;% rename(</span></span>
+<span><span class="co">#   Opening = Opening.Inventories,</span></span>
+<span><span class="co">#   Supply = Supply.Plan</span></span>
+<span><span class="co"># )</span></span>
+<span></span>
+<span></span>
+<span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 520</span></span>
+<span><span class="co">#&gt; Columns: 5</span></span>
+<span><span class="co">#&gt; $ DFU     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Item 000001", "Item 000002", "Item 000003", "Item 000004", "I…</span></span>
+<span><span class="co">#&gt; $ Period  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2022-07-03, 2022-07-03, 2022-07-03, 2022-07-03, 2022-07-03, 2…</span></span>
+<span><span class="co">#&gt; $ Demand  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 364, 1419, 265, 1296, 265, 1141, 126, 6859, 66, 380, 364, 1419…</span></span>
+<span><span class="co">#&gt; $ Opening <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6570, 5509, 2494, 7172, 1464, 9954, 2092, 17772, 1222, 3411, 0…</span></span>
+<span><span class="co">#&gt; $ Supply  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span></span>
+<span><span class="co"># calculate</span></span>
+<span><span class="va">calculated_projection</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/light_proj_inv.html">light_proj_inv</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="va">df1</span>, </span>
+<span>                                        DFU <span class="op">=</span> <span class="va">DFU</span>, </span>
+<span>                                        Period <span class="op">=</span> <span class="va">Period</span>, </span>
+<span>                                        Demand <span class="op">=</span>  <span class="va">Demand</span>, </span>
+<span>                                        Opening <span class="op">=</span> <span class="va">Opening</span>, </span>
+<span>                                        Supply <span class="op">=</span> <span class="va">Supply</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Joining, by = c("DFU", "Period")</span></span>
+<span></span>
+<span><span class="co"># see results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">calculated_projection</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># Groups:   DFU [1]</span></span></span>
+<span><span class="co">#&gt;   DFU         Period     Demand Opening Calculated.Coverage.in.…¹ Proje…² Supply</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Item 000001 2022-07-03    364    <span style="text-decoration: underline;">6</span>570                        17    <span style="text-decoration: underline;">6</span>206      0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Item 000001 2022-07-10    364       0                        16    <span style="text-decoration: underline;">5</span>842      0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Item 000001 2022-07-17    364       0                        15    <span style="text-decoration: underline;">5</span>478      0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Item 000001 2022-07-24    260       0                        14    <span style="text-decoration: underline;">5</span>218      0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Item 000001 2022-07-31    736       0                        13    <span style="text-decoration: underline;">4</span>482      0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Item 000001 2022-08-07    859       0                        12    <span style="text-decoration: underline;">3</span>623      0</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​Calculated.Coverage.in.Periods,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ²​Projected.Inventories.Qty</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="drp">DRP<a class="anchor" aria-label="anchor" href="#drp"></a>
+<h3 id="projected-inventories-analysis">1.3) Projected Inventories Analysis<a class="anchor" aria-label="anchor" href="#projected-inventories-analysis"></a>
 </h3>
 </div>
+</div>
+<div class="section level2">
+<h2 id="drp">DRP<a class="anchor" aria-label="anchor" href="#drp"></a>
+</h2>
 </div>
 <div class="section level2">
 <h2 id="supply-risks-alarm">Supply Risks Alarm<a class="anchor" aria-label="anchor" href="#supply-risks-alarm"></a>
