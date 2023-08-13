@@ -2,7 +2,7 @@ Package: planr
 Title: Functions for Demand and Supply Planning
 Version: 0.0.0.9000
 Authors@R: 
-    person("Nicolas", "Nguyen", , "nikonguyen@yahoo.fr", role = c("aut", "cre"))
+    person("Nicolas", "Nguyen", role = c("aut", "cre"),email = "nikonguyen@yahoo.fr")
 Description: Tools for Demand and Supply Planning, Sales and Operations Planning Process.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -12,6 +12,7 @@ Imports:
     dplyr,
     magrittr,
     RcppRoll
+Maintainer: Nicolas Nguyen <nikonguyen@yahoo.fr>
 Depends: 
     R (>= 2.10)
 LazyData: true
