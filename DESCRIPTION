@@ -2,8 +2,7 @@ Package: planr
 Title: Functions for Demand and Supply Planning
 Version: 0.0.0.9000
 Authors@R: 
-    person("Nicolas", "Nguyen", , "nikonguyen@yahoo.fr", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("Nicolas", "Nguyen", , "nikonguyen@yahoo.fr", role = c("aut", "cre"))
 Description: Tools for Demand and Supply Planning, Sales and Operations Planning Process.
 License: MIT + file LICENSE
 Encoding: UTF-8
