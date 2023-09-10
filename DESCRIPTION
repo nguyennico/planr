@@ -1,9 +1,9 @@
 Package: planr
-Title: Functions for Demand and Supply Planning
-Version: 0.0.0.9000
+Title: Tools for Supply Chain Management, Demand and Supply Planning
+Version: 0.1
 Authors@R: 
-    person("Nicolas", "Nguyen", role = c("aut", "cre"),email = "nikonguyen@yahoo.fr")
-Description: Tools for Demand and Supply Planning, Sales and Operations Planning Process.
+    person("Nicolas", "Nguyen", email = "nikonguyen@yahoo.fr", role = c("aut", "cre"))
+Description: Perform flexible and quick calculations for Demand and Supply Planning, such as projected inventories and coverages, as well as replenishment plan. For any time bucket, daily, weekly or monthly, and any granularity level, product or group of products.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -12,7 +12,8 @@ Imports:
     dplyr,
     magrittr,
     RcppRoll
-Maintainer: Nicolas Nguyen <nikonguyen@yahoo.fr>
+URL: https://github.com/nguyennico/planr
+BugReports: https://github.com/nguyennico/planr/issues
 Depends: 
     R (>= 2.10)
 LazyData: true
