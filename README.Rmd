@@ -3,9 +3,11 @@ output: github_document
 always_allow_html: true
 ---
 
-
+<!-- badges: start -->
 [![CRAN Status](https://www.r-pkg.org/badges/version/planr)](https://cran.r-project.org/package=planr)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/planr)](https://cranlogs.r-pkg.org/badges/grand-total/planr)
 [![CRAN download](https://cranlogs.r-pkg.org/badges/planr)](https://cran.r-project.org/package=planr)
+<!-- badges: end -->
 
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
