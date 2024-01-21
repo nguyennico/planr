@@ -10,19 +10,19 @@
 
 The goal of planr is to provide some functions for the activity of Demand & Supply Planning and S&OP process.
 
-[**A few functions to calculate projected inventories and coverages, and more :**]{style="color:green"}
+**A few functions to calculate projected inventories and coverages, and more :**
 
--   The 1st, basic (light) function : [light_proj_inv()]{style="color:red"} [**light_proj_inv()**]{style="color:blue"}
+-   The 1st, basic (light) function : **light_proj_inv()**
 
 Allows to **calculate quickly the projected inventories and coverages**: for a SKU, a group of SKUs, or at an aggregated level (a Product Family for example).
 
--   The 2nd function : [**proj_inv()**]{style="color:blue"}
+-   The 2nd function : **proj_inv()**
 
 Allows to calculate the projected inventories and coverages, and also to **analyze the projected values based on some parameters (targeted stocks min & Max)**.
 
 Useful to filter the data later on and spot which SKU is below the safety stock or in an overstock situation. We easily can identify when it will be in this situation, and how much, compared to those thresholds.
 
--   The 3rd function : [**const_dmd()**]{style="color:blue"}
+-   The 3rd function : **const_dmd()**
 
 Allows to calculate the projected inventories and coverages, as well as the **Constrained Demand**, which is the **Demand which can be delivered, considering the actual projected inventories**.
 
@@ -32,17 +32,17 @@ For example if an Entity 1 supplies and Entity 2 : the Constrained Demand of the
 
 Another usage can be to manage some Allocations : we capture in the initial Demand the full potential of Sales, and based on the projected inventories, we get the Constrained Demand.
 
-[**A function to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning)**]{style="color:green"}
+**A function to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning)**
 
--   The 4th function : [**drp()**]{style="color:blue"}
+-   The 4th function : **drp()**
 
 Based on some parameters (safety stocks, frequency of supply, minimum order quantity) allows to **calculate a Replenishment Plan for an entity**, for example at a Distributor level, and Affiliate, a Regional Distribution Center,...
 
 Also **useful in the scope of the S&OP (Sales & Operations Planning) process, to calculate a theoretical, unconstrained, Replenishment Plan**.
 
-[**A function to convert the Demand from Monthly to Weekly buckets**]{style="color:green"}
+**A function to convert the Demand from Monthly to Weekly buckets**
 
--   The 5th function : [**month_to_week()**]{style="color:blue"}
+-   The 5th function : **month_to_week()**
 
 Allows to **convert a Demand initially in Monthly buckets into Weekly buckets**.
 
