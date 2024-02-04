@@ -16,6 +16,10 @@ The goal of planr is to provide some functions for the activity of Demand & Supp
 
 Allows to **calculate quickly the projected inventories and coverages**: for a SKU, a group of SKUs, or at an aggregated level (a Product Family for example).
 
+-   A simple demo : [RPubs - Calculation of Projected Inventories using R](https://rpubs.com/nikonguyen/light_proj_inv_simple_demo)
+
+-   Portfolio Calculation : [RPubs - Portfolio Calculation of Projected Inventories & Coverages using R](https://rpubs.com/nikonguyen/light_proj_inv_portfolio_demo)
+
 -   The 2nd function : **proj_inv()**
 
 Allows to calculate the projected inventories and coverages, and also to **analyze the projected values based on some parameters (targeted stocks min & Max)**.
