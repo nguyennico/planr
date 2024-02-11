@@ -8,51 +8,84 @@
 
 # planr <img src="man/figures/logo.png" align="right" height="200"/>
 
-The goal of planr is to provide some functions for the activity of Demand & Supply Planning and S&OP process.
+The goal of the **planr** package is to provide some **functions for the activity of Demand & Supply Planning and S&OP** (Sales & Operations Planning) process.
+
+All started during a [meetup](https://www.youtube.com/watch?v=rzs6aSr4XoU) with RStudio (now [Posit](https://posit.co/)) in May 2021.
+
+The idea was to show how R and [shiny](https://shiny.posit.co/) can be some great tools for Supply Chain Management.
+
+This was also motivated by a [post](https://www.ascm.org/ascm-insights/sop-and-the-digital-supply-chain/) from the APICS (now ASCM) which invited supply chain professionals to use R to run the S&OP process.
+
+We're going to see here how to use the different functions available in the package, applying them on one product, and on a portfolio.
 
 **A few functions to calculate projected inventories and coverages, and more :**
 
--   The 1st, basic (light) function : **light_proj_inv()**
+> The 1st, basic (light) function : **light_proj_inv()**
 
-Allows to **calculate quickly the projected inventories and coverages**: for a SKU, a group of SKUs, or at an aggregated level (a Product Family for example).
+-   Allows to **calculate quickly the projected inventories and coverages**:
 
--   A simple demo : [RPubs - Calculation of Projected Inventories using R](https://rpubs.com/nikonguyen/light_proj_inv_simple_demo)
+    -   for a SKU
+    -   a group of SKUs
+    -   at an aggregated level (a Product Family for example)
 
--   Portfolio Calculation : [RPubs - Portfolio Calculation of Projected Inventories & Coverages using R](https://rpubs.com/nikonguyen/light_proj_inv_portfolio_demo)
+-   To use it :
 
--   The 2nd function : **proj_inv()**
+    -   [A simple demo](https://rpubs.com/nikonguyen/light_proj_inv_simple_demo)
 
-Allows to calculate the projected inventories and coverages, and also to **analyze the projected values based on some parameters (targeted stocks min & Max)**.
+    -   [Portfolio Calculation](https://rpubs.com/nikonguyen/light_proj_inv_portfolio_demo)
 
-Useful to filter the data later on and spot which SKU is below the safety stock or in an overstock situation. We easily can identify when it will be in this situation, and how much, compared to those thresholds.
+> The 2nd function : **proj_inv()**
 
--   The 3rd function : **const_dmd()**
+-   Allows to calculate the projected inventories and coverages
 
-Allows to calculate the projected inventories and coverages, as well as the **Constrained Demand**, which is the **Demand which can be delivered, considering the actual projected inventories**.
+    -   and also to **analyze the projected values based on some parameters (targeted stocks min & Max)**.
 
-Useful to provide to a customer (or a receiving entity) the actual Demand which can be fulfilled, and then to calculate the impact on their side.
+-   Useful to filter the data later on and spot which SKU is below the safety stock or in an overstock situation.
 
-For example if an Entity 1 supplies and Entity 2 : the Constrained Demand of the Entity 1 becomes the possible Supply Plan to the Entity 2. We then can calculate the expected projected inventories of the Entity 2.
+    -   We easily can identify when it will be in this situation
+    -   and how much, compared to those thresholds
 
-Another usage can be to manage some Allocations : we capture in the initial Demand the full potential of Sales, and based on the projected inventories, we get the Constrained Demand.
+-   To use it :
+
+    -   [A simple demo](https://rpubs.com/nikonguyen/proj_inv_simple_demo)
+
+    -   [Portfolio Calculation](https://rpubs.com/nikonguyen/proj_inv_portfolio_calculation)
+
+> The 3rd function : **const_dmd()**
+
+-   Allows to calculate the projected inventories and coverages, as well as the **Constrained Demand**, which is the **Demand which can be delivered, considering the actual projected inventories**.
+
+-   Useful to provide to a customer (or a receiving entity) the actual Demand which can be fulfilled, and then to calculate the impact on their side.
+
+    -   For example if an Entity 1 supplies and Entity 2 : the Constrained Demand of the Entity 1 becomes the possible Supply Plan to the Entity 2. We then can calculate the expected projected inventories of the Entity 2.
+
+    -   Another usage can be to manage some Allocations : we capture in the initial Demand the full potential of Sales, and based on the projected inventories, we get the Constrained Demand.
+
+-   To use it : here a [demo](https://rpubs.com/nikonguyen/const_dmd_demo)
 
 **A function to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning)**
 
--   The 4th function : **drp()**
+> The 4th function : **drp()**
 
-Based on some parameters (safety stocks, frequency of supply, minimum order quantity) allows to **calculate a Replenishment Plan for an entity**, for example at a Distributor level, and Affiliate, a Regional Distribution Center,...
+-   Based on some parameters (safety stocks, frequency of supply, minimum order quantity) allows to **calculate a Replenishment Plan for an entity**, for example at a Distributor level, and Affiliate, a Regional Distribution Center,...
 
-Also **useful in the scope of the S&OP (Sales & Operations Planning) process, to calculate a theoretical, unconstrained, Replenishment Plan**.
+-   Also **useful in the scope of the S&OP (Sales & Operations Planning) process, to calculate a theoretical, unconstrained, Replenishment Plan**.
+
+-   To use it :
+
+    -   [a simple demo](https://rpubs.com/nikonguyen/drp_demo)
+
+    -   [Portfolio calculation](https://rpubs.com/nikonguyen/drp_portfolio_demo)
 
 **A function to convert the Demand from Monthly to Weekly buckets**
 
--   The 5th function : **month_to_week()**
+> The 5th function : **month_to_week()**
 
-Allows to **convert a Demand initially in Monthly buckets into Weekly buckets**.
+-   Allows to **convert a Demand initially in Monthly buckets into Weekly buckets**.
 
-By default, it assumes that the Demand is evenly distributed for each week (i.e. 25% of the Demand for each week of the month).
+-   By default, it assumes that the Demand is evenly distributed for each week (i.e. 25% of the Demand for each week of the month).
 
-We often generate monthly sales forecasts, and want to express this quantity into weekly bucket, to use it later on for the calculation of weekly projected inventories or a DRP for example.
+-   We often generate monthly sales forecasts, and want to express this quantity into weekly bucket, to use it later on for the calculation of weekly projected inventories or a DRP for example.
 
 ## Installation
 
@@ -76,9 +109,9 @@ library(planr)
 
 Please refer to the sections:
 
--   Get Started
+-   Above, showing some example for each functions
 
--   See some examples of applications
+-   Some examples of applications below
 
 ## Links
 
