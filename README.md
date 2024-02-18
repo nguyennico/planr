@@ -34,6 +34,8 @@ We're going to see here how to use the different functions available in the pack
 
     -   [Portfolio Calculation](https://rpubs.com/nikonguyen/light_proj_inv_portfolio_demo)
 
+![Calculated Projected Inventories using light_proj_inv()](docs/light_proj_inv_table.png)
+
 > The 2nd function : **proj_inv()**
 
 -   Allows to calculate the projected inventories and coverages
@@ -83,9 +85,11 @@ We're going to see here how to use the different functions available in the pack
 
 -   Allows to **convert a Demand initially in Monthly buckets into Weekly buckets**.
 
--   By default, it assumes that the Demand is evenly distributed for each week (i.e. 25% of the Demand for each week of the month).
+    -   By default, it assumes that the Demand is evenly distributed for each week (i.e. 25% of the Demand for each week of the month).
 
 -   We often generate monthly sales forecasts, and want to express this quantity into weekly bucket, to use it later on for the calculation of weekly projected inventories or a DRP for example.
+
+-   To use it : [RPubs - Transformation of Monthly Demand into Weekly Demand](https://rpubs.com/nikonguyen/month_to_week_demo)
 
 ## Installation
 
