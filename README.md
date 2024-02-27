@@ -8,15 +8,35 @@
 
 # planr <img src="man/figures/logo.png" align="right" height="200"/>
 
+## Installation
+
+To install the CRAN version:
+
+``` r
+#install.packages("planr")
+library(planr)
+```
+
+To install the latest development version from GitHub:
+
+``` r
+library(devtools)
+#install_github("nguyennico/planr")
+
+library(planr)
+```
+
+## Get started
+
+This section introduces the different functions of the package **planr** through :
+
+-   a simple demo on a few items
+
+-   an application on a product portfolio
+
+Then, in the 3rd section we can find some examples of **shiny apps** using this package.
+
 The goal of the **planr** package is to provide some **functions for the activity of Demand & Supply Planning and S&OP** (Sales & Operations Planning) process.
-
-All started during a [meetup](https://www.youtube.com/watch?v=rzs6aSr4XoU) with RStudio (now [Posit](https://posit.co/)) in May 2021.
-
-The idea was to show how R and [shiny](https://shiny.posit.co/) can be some great tools for Supply Chain Management.
-
-This was also motivated by a [post](https://www.ascm.org/ascm-insights/sop-and-the-digital-supply-chain/) from the APICS (now ASCM) which invited supply chain professionals to use R to run the S&OP process.
-
-We're going to see here how to use the different functions available in the package, applying them on one product, and on a portfolio.
 
 **A few functions to calculate projected inventories and coverages, and more :**
 
@@ -90,32 +110,6 @@ We're going to see here how to use the different functions available in the pack
 -   We often generate monthly sales forecasts, and want to express this quantity into weekly bucket, to use it later on for the calculation of weekly projected inventories or a DRP for example.
 
 -   To use it : [RPubs - Transformation of Monthly Demand into Weekly Demand](https://rpubs.com/nikonguyen/month_to_week_demo)
-
-## Installation
-
-To install the CRAN version:
-
-``` r
-#install.packages("planr")
-library(planr)
-```
-
-To install the latest development version from GitHub:
-
-``` r
-library(devtools)
-#install_github("nguyennico/planr")
-
-library(planr)
-```
-
-## How to use
-
-Please refer to the sections:
-
--   Above, showing some example for each functions
-
--   Some examples of applications below
 
 ## Links
 
