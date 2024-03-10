@@ -108,7 +108,9 @@ The goal of the **planr** package is to provide some **functions for the activit
 
 ![Calculated Projected Inventories and Constrained Demand using const_dmd()](docs/const_dmd_table.png)
 
-**A function to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning)**
+### Replenishment Plan
+
+A function to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning).
 
 > The 4th function : **drp()**
 
@@ -124,7 +126,7 @@ The goal of the **planr** package is to provide some **functions for the activit
 
 ![Calculated Projected Inventories and Replenishment Plan using drp()](docs/drp_table.png)
 
-**A function to convert the Demand from Monthly to Weekly buckets**
+### Conversion Monthly to Weekly Bucket
 
 > The 5th function : **month_to_week()**
 
