@@ -8,6 +8,21 @@
 
 # planr <img src="man/figures/logo.png" align="right" height="200"/>
 
+## About
+
+The **planr** package is for **Supply Chain Management**.\
+The goal is to provide some **functions to perform quickly** some classic operations in the scope of **Demand and Supply Planning** or to **run the S&OP** (Sales & Operations Planning) **process**.
+
+There are currently 3 groups of functions :
+
+-   Calculation & Analysis of projected inventories : **light_proj_inv()** / **proj_inv()** / **const_dmd()**
+
+-   Calculation of Replenishment Plan (also called DRP) : **drp()**
+
+-   Breakdown of Monthly Demand into Weekly Buckets : **month_to_week()**
+
+To learn how to use those functions : refer to the section Get Started.
+
 ## Installation
 
 To install the CRAN version:
@@ -40,6 +55,8 @@ The goal of the **planr** package is to provide some **functions for the activit
 
 **A few functions to calculate projected inventories and coverages, and more :**
 
+### Projected Inventories & Coverages
+
 > The 1st, basic (light) function : **light_proj_inv()**
 
 -   Allows to **calculate quickly the projected inventories and coverages**:
@@ -55,6 +72,8 @@ The goal of the **planr** package is to provide some **functions for the activit
     -   [Portfolio Calculation](https://rpubs.com/nikonguyen/light_proj_inv_portfolio_demo)
 
 ![Calculated Projected Inventories using light_proj_inv()](docs/light_proj_inv_table.png)
+
+### Calculation & Analysis
 
 > The 2nd function : **proj_inv()**
 
@@ -73,6 +92,8 @@ The goal of the **planr** package is to provide some **functions for the activit
 
     -   [Portfolio Calculation](https://rpubs.com/nikonguyen/proj_inv_portfolio_calculation)
 
+![Calculated Projected Inventories using proj_inv()](docs/proj_inv_table.png)
+
 > The 3rd function : **const_dmd()**
 
 -   Allows to calculate the projected inventories and coverages, as well as the **Constrained Demand**, which is the **Demand which can be delivered, considering the actual projected inventories**.
@@ -84,6 +105,8 @@ The goal of the **planr** package is to provide some **functions for the activit
     -   Another usage can be to manage some Allocations : we capture in the initial Demand the full potential of Sales, and based on the projected inventories, we get the Constrained Demand.
 
 -   To use it : here a [demo](https://rpubs.com/nikonguyen/const_dmd_demo)
+
+![Calculated Projected Inventories and Constrained Demand using const_dmd()](docs/const_dmd_table.png)
 
 **A function to calculate a Replenishment Plan (also called DRP : Distribution Requirement Planning)**
 
@@ -98,6 +121,8 @@ The goal of the **planr** package is to provide some **functions for the activit
     -   [a simple demo](https://rpubs.com/nikonguyen/drp_demo)
 
     -   [Portfolio calculation](https://rpubs.com/nikonguyen/drp_portfolio_demo)
+
+![Calculated Projected Inventories and Replenishment Plan using drp()](docs/drp_table.png)
 
 **A function to convert the Demand from Monthly to Weekly buckets**
 
