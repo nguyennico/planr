@@ -1,15 +1,16 @@
 Package: planr
 Title: Tools for Supply Chain Management, Demand and Supply Planning
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: 
     person("Nicolas", "Nguyen", email = "nikonguyen@yahoo.fr", role = c("aut", "cre"))
 Description: Perform flexible and quick calculations for Demand and Supply Planning, such as projected inventories and coverages, as well as replenishment plan. For any time bucket, daily, weekly or monthly, and any granularity level, product or group of products.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Imports: 
     dplyr,
+    tidyr,
     lubridate,
     magrittr,
     RcppRoll
