@@ -1,6 +1,7 @@
 #' blueprint
 #'
-#' This dataset contains the basic features to calculate projected inventories and coverages and also 2 additional info: a minimum and maximum targets of stock coverage.
+#' This dataset contains the basic features to calculate projected inventories and coverages.
+#' And also 2 additional info: a minimum and maximum targets of stock coverage.
 #' We can apply on it the proj_inv() function, it will return calculated projected inventories and coverages as well as an analysis of the position of the projected inventories versus the minimum and maximum stocks targets.
 #'
 #' \itemize{
@@ -130,4 +131,60 @@ NULL
 #' @format A data frame with 24 rows and 3 variables
 NULL
 
+
+
+#' slob
+#'
+#' This dataset contains the detailed Opening Inventories for two Products.
+#' There are 4 variables: a DFU, a Period, a Demand and the breakdown of the Opening Inventories by expiry date or minimum Remaining Shelf Life for use.
+#' The idea is to use this dataset to calculate the Short Shelf Life quantities, called here SSL Qty.
+#' We can apply on this dataset the ssl() function, it will calculate a SSL Qty field.
+#'
+#' \itemize{
+#'   \item DFU, an item
+#'   \item Period, a date in monthly format
+#'   \item Demand, a consumption in units
+#'   \item Opening, the breakdown of the opening inventories in units by expiry date
+#'
+#' }
+#'
+#'
+#' @name slob
+#' @usage data(slob)
+#' @docType data
+#' @author Nicolas Nguyen \email{nikonguyen@yahoo.fr}
+#' @format A data frame with 44 rows and 4 variables
+NULL
+
+
+
+
+#' demo_in_transit
+#'
+#' This dataset contains the detailed ETA and ETD for the current and next in transit, as well as the Transit Time for a defined DFU.
+#' ETA stands for Estimated Time of Arrival.
+#' ETD stands for Estimated Time of Departure.
+#' There are 2 types of in transit : the current in transit and the next one, not yet shipped.
+#' There are 6 variables in this dataset: a DFU, a Period, an ETA Current Goods In Transit, an ETD & ETA Next Goods In Transit, and a Transit Time.
+#' Note that the diffrence between ETD and ETA is the Transit Time.
+#' The idea is to use this dataset to project the Goods In Transit.
+#' We can apply on this dataset the proj_git() function, it will calculate the Proj.GIT which gathers the current and next In Transit quantities.
+#'
+#' \itemize{
+#'   \item DFU, a location and an item
+#'   \item Period, a date in weekly bucket format
+#'   \item ETA.Current, some quantities currently in transit displayed at their ETA date in units
+#'   \item ETA.Next, some quantities to be shipped, not yet in transit, displayed at their ETA date in units
+#'   \item ETD.Next, some quantities to be shipped, not yet in transit, displayed at their ETD date in units
+#'   \item TLT, the Transit Lead Time, expressed in weeks, represents the difference between ETA and ETD dates
+#'
+#' }
+#'
+#'
+#' @name demo_in_transit
+#' @usage data(demo_in_transit)
+#' @docType data
+#' @author Nicolas Nguyen \email{nikonguyen@yahoo.fr}
+#' @format A data frame with 447 rows and 6 variables
+NULL
 
