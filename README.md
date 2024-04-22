@@ -146,6 +146,8 @@ A function to calculate a Replenishment Plan (also called DRP : Distribution Req
 
 -   To use it : [RPubs - Transformation of Monthly Demand into Weekly Demand](https://rpubs.com/nikonguyen/month_to_week_demo)
 
+![](docs/monthly_to_weekly.png)
+
 ### Short Shelf Life (SSL)
 
 > The 6th function : **ssl()**
@@ -189,7 +191,6 @@ It can be useful to :
 -   to run some simulations to optimize some DRP parameters & stocks levels
 
 -   To use it : [Projected In Transit demo](https://rpubs.com/nikonguyen/proj_git_demo)
-
 
 ![](docs/projected_in_transit.png)
 
