@@ -13,15 +13,27 @@
 The **planr** package is for **Supply Chain Management**.\
 The goal is to provide some **functions to perform quickly** some classic operations in the scope of **Demand and Supply Planning** or to **run the S&OP** (Sales & Operations Planning) **process**.
 
-There are currently 3 groups of functions :
+There are currently 5 groups of functions :
 
--   Calculation & Analysis of projected inventories : **light_proj_inv()** / **proj_inv()** / **const_dmd()**
+-   Calculation & Analysis of projected inventories :
+
+    -   **light_proj_inv()**
+
+    -   **proj_inv()**
+
+    -   **const_dmd()**
 
 -   Calculation of Replenishment Plan (also called DRP) : **drp()**
 
 -   Breakdown of Monthly Demand into Weekly Buckets : **month_to_week()**
 
-To learn how to use those functions : refer to the section Get Started.
+-   Calculation of Short Shelf Life (SSL) stocks : **ssl()**
+
+-   Projection of In Transit inventories : **proj_git()**
+
+To learn how to use those functions : refer to the different sections of Get Started.
+
+Then, in the last Part "Links" we can find some examples of **shiny apps** using this package.
 
 ## Installation
 
@@ -49,11 +61,7 @@ This section introduces the different functions of the package **planr** through
 
 -   an application on a product portfolio
 
-Then, in the 3rd section we can find some examples of **shiny apps** using this package.
-
-The goal of the **planr** package is to provide some **functions for the activity of Demand & Supply Planning and S&OP** (Sales & Operations Planning) process.
-
-**A few functions to calculate projected inventories and coverages, and more :**
+We will start with **a few functions to calculate projected inventories and coverages.**
 
 ### Projected Inventories & Coverages
 
@@ -137,6 +145,53 @@ A function to calculate a Replenishment Plan (also called DRP : Distribution Req
 -   We often generate monthly sales forecasts, and want to express this quantity into weekly bucket, to use it later on for the calculation of weekly projected inventories or a DRP for example.
 
 -   To use it : [RPubs - Transformation of Monthly Demand into Weekly Demand](https://rpubs.com/nikonguyen/month_to_week_demo)
+
+### Short Shelf Life (SSL)
+
+> The 6th function : **ssl()**
+
+Allows to **calculate the projected Short Shelf Life quantities** from based on :
+
+-   the details of Opening Inventories : at which Period of time will some stocks expire or won't have enough Remaining Shelf Life (RSL) for sale and will be blocked
+
+-   the Demand Forecasts
+
+This leads to :
+
+-   a **more precise calculation of the projected inventories and DRP**
+
+-   get a **summary view of the Obsolescence risks**, and **take some actions**
+
+-   To use it : [SSL demo](https://rpubs.com/nikonguyen/ssl_demo)
+
+![](docs/ssl_calculation.png)
+
+### Projected In Transit
+
+> The 7th function : **proj_git()**
+
+Allows to **calculate the projected In Transit quantities** to one Entity and a defined product.
+
+It takes into consideration :
+
+-   the **current quantity in transit**
+
+-   the **next (not shipped yet) quantity in transit**
+
+    -   which could be calculated through a DRP for example
+
+-   the **Transit Time**
+
+It can be useful to :
+
+-   monitor the total (local + in transit) projected inventories of one Entity
+
+-   to run some simulations to optimize some DRP parameters & stocks levels
+
+-   To use it : [Projected In Transit demo](https://rpubs.com/nikonguyen/proj_git_demo)
+
+
+![](docs/projected_in_transit.png)
 
 ## Links
 
