@@ -13,27 +13,29 @@
 The **planr** package is for **Supply Chain Management**.\
 The goal is to provide some **functions to perform quickly** some classic operations in the scope of **Demand and Supply Planning** or to **run the S&OP** (Sales & Operations Planning) **process**.
 
-There are currently 5 groups of functions :
+There are currently **6 groups** of functions :
 
--   Calculation & Analysis of projected inventories :
+-   **Calculation of projected inventories & coverages :**
 
-    -   **light_proj_inv()**
+    -   **simple calculation :** light_proj_inv()
 
-    -   **proj_inv()**
+    -   **calculation & analysis :** proj_inv()
 
-    -   **const_dmd()**
+-   **Calculation of projected inventories & constrained demand :** const_dmd()
 
--   Calculation of Replenishment Plan (also called DRP) : **drp()**
+-   **Calculation of Replenishment Plan** (also called DRP) : drp()
 
--   Breakdown of Monthly Demand into Weekly Buckets : **month_to_week()**
+-   **Breakdown of Monthly Demand into Weekly Buckets** : month_to_week()
 
--   Calculation of Short Shelf Life (SSL) stocks : **ssl()**
+-   **Calculation of Short Shelf Life (SSL) stocks** : ssl()
 
--   Projection of In Transit inventories : **proj_git()**
+-   **Projection of In Transit inventories** : proj_git()
 
-To learn how to use those functions : refer to the different sections of Get Started.
+Calculations are performed at monthly or weekly buckets.
 
-Then, in the last Part "Links" we can find some examples of **shiny apps** using this package.
+To learn how to use those functions, refer to the [Cheatsheets](https://niconguyen.quarto.pub/planr/) and the **Get Started** sections of the [website R planr](https://niconguyen.quarto.pub/planr/about.html)
+
+In the parts [Gallery](https://niconguyen.quarto.pub/planr/gallery.html) and [Gallery Shiny](https://niconguyen.quarto.pub/planr/gallery_shiny.html) we can find some examples of visuals and **shiny apps** using this package.
 
 ## Installation
 
