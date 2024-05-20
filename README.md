@@ -10,7 +10,7 @@
 
 ## About
 
-The **planr** package is for **Supply Chain Management**.\
+The [R package **planr**](https://cran.r-project.org/web/packages/planr/index.html) is for **Supply Chain Management**.\
 The goal is to provide some **functions to perform quickly** some classic operations in the scope of **Demand and Supply Planning** or to **run the S&OP** (Sales & Operations Planning) **process**.
 
 There are currently **6 groups** of functions :
