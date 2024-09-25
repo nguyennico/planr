@@ -10,7 +10,7 @@
 
 ## About
 
-The [R package **planr**](https://cran.r-project.org/web/packages/planr/index.html) is for **Supply Chain Management**.\
+The R package **planr** is for **Supply Chain Management**.\
 The goal is to provide some **functions to perform quickly** some classic operations in the scope of **Demand and Supply Planning** or to **run the S&OP** (Sales & Operations Planning) **process**.
 
 There are currently **6 groups** of functions :
@@ -25,7 +25,10 @@ There are currently **6 groups** of functions :
 
 -   **Calculation of Replenishment Plan** (also called DRP) : drp()
 
--   **Breakdown of Monthly Demand into Weekly Buckets** : month_to_week()
+-   **Breakdown of Monthly Demand into Weekly Buckets** :
+
+    -   **by default breakdown evenly distributed :** month_to_week()
+    -   **custom distribution :** month_to_weekx()
 
 -   **Calculation of Short Shelf Life (SSL) stocks** : ssl()
 
@@ -149,6 +152,15 @@ A function to calculate a Replenishment Plan (also called DRP : Distribution Req
 -   To use it : [RPubs - Transformation of Monthly Demand into Weekly Demand](https://rpubs.com/nikonguyen/month_to_week_demo)
 
 ![](docs/monthly_to_weekly.png)
+
+> The 5bis function : **month_to_weekx()**
+
+-   Allows to **convert a Demand initially in Monthly buckets into Weekly buckets based on a custom pattern**.
+-   Useful to get a more accurate :
+    -   projection of inventories & coverages
+    -   calculation of Replenishment Plan
+
+![](docs/distribution_patterns.png){width="500"}
 
 ### Short Shelf Life (SSL)
 
