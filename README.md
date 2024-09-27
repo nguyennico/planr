@@ -161,7 +161,7 @@ A function to calculate a Replenishment Plan (also called DRP : Distribution Req
     -   calculation of Replenishment Plan
 -   To use it : [month_to_weekx demo](https://niconguyen.quarto.pub/planr/month_to_weekx.html)
 
-![](docs/distribution_patterns.png){width="500"}
+![](docs/distribution_patterns.png)
 
 ### Short Shelf Life (SSL)
 
