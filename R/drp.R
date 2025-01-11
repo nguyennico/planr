@@ -9,7 +9,7 @@
 #' @param SSCov the Safety Stock Coverage, expressed in number of periods
 #' @param DRPCovDur the Frequency of Supply, expressed in number of periods
 #' @param MOQ the Multiple Order Quantity, expressed in units, 1 by default or a multiple of a Minimum Order Quantity
-#' @param FH defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.
+#' @param FH defines the Frozen and Free Horizon. It has 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.
 #'
 #' @importFrom RcppRoll roll_sum
 #' @importFrom magrittr %>%
@@ -173,11 +173,7 @@ drp <- function(dataset, DFU, Period,
 
   # calculation projected inventories Qty
 
-  df1 <- df1 %>%
-    group_by(
-      DFU, Period,
-      Demand, Opening, Supply
-    ) %>%
+  df1 <- df1 %>% group_by(DFU, Period, Demand, Opening, Supply) %>%
     summarise(
       Projected.Inventories.Qty = sum(acc_Opening.Inventories) + sum(acc_Supply.Plan) - sum(acc_Demand)
     )
@@ -299,7 +295,76 @@ drp <- function(dataset, DFU, Period,
       Shift57 = lead(Demand, n = 57),
       Shift58 = lead(Demand, n = 58),
       Shift59 = lead(Demand, n = 59),
-      Shift60 = lead(Demand, n = 60)
+      Shift60 = lead(Demand, n = 60),
+
+      Shift61 = lead(Demand, n = 61),
+      Shift62 = lead(Demand, n = 62),
+      Shift63 = lead(Demand, n = 63),
+      Shift64 = lead(Demand, n = 64),
+      Shift65 = lead(Demand, n = 65),
+      Shift66 = lead(Demand, n = 66),
+      Shift67 = lead(Demand, n = 67),
+      Shift68 = lead(Demand, n = 68),
+      Shift69 = lead(Demand, n = 69),
+      Shift70 = lead(Demand, n = 70),
+
+      Shift71 = lead(Demand, n = 71),
+      Shift72 = lead(Demand, n = 72),
+      Shift73 = lead(Demand, n = 73),
+      Shift74 = lead(Demand, n = 74),
+      Shift75 = lead(Demand, n = 75),
+      Shift76 = lead(Demand, n = 76),
+      Shift77 = lead(Demand, n = 77),
+      Shift78 = lead(Demand, n = 78),
+      Shift79 = lead(Demand, n = 79),
+      Shift80 = lead(Demand, n = 80),
+
+      Shift81 = lead(Demand, n = 81),
+      Shift82 = lead(Demand, n = 82),
+      Shift83 = lead(Demand, n = 83),
+      Shift84 = lead(Demand, n = 84),
+      Shift85 = lead(Demand, n = 85),
+      Shift86 = lead(Demand, n = 86),
+      Shift87 = lead(Demand, n = 87),
+      Shift88 = lead(Demand, n = 88),
+      Shift89 = lead(Demand, n = 89),
+      Shift90 = lead(Demand, n = 90),
+
+      Shift91 = lead(Demand, n = 91),
+      Shift92 = lead(Demand, n = 92),
+      Shift93 = lead(Demand, n = 93),
+      Shift94 = lead(Demand, n = 94),
+      Shift95 = lead(Demand, n = 95),
+      Shift96 = lead(Demand, n = 96),
+      Shift97 = lead(Demand, n = 97),
+      Shift98 = lead(Demand, n = 98),
+      Shift99 = lead(Demand, n = 99),
+      Shift100 = lead(Demand, n = 100),
+
+      Shift101 = lead(Demand, n = 101),
+      Shift102 = lead(Demand, n = 102),
+      Shift103 = lead(Demand, n = 103),
+      Shift104 = lead(Demand, n = 104),
+      Shift105 = lead(Demand, n = 105),
+      Shift106 = lead(Demand, n = 106),
+      Shift107 = lead(Demand, n = 107),
+      Shift108 = lead(Demand, n = 108),
+      Shift109 = lead(Demand, n = 109),
+      Shift110 = lead(Demand, n = 110),
+
+      Shift111 = lead(Demand, n = 111),
+      Shift112 = lead(Demand, n = 112),
+      Shift113 = lead(Demand, n = 113),
+      Shift114 = lead(Demand, n = 114),
+      Shift115 = lead(Demand, n = 115),
+      Shift116 = lead(Demand, n = 116),
+      Shift117 = lead(Demand, n = 117),
+      Shift118 = lead(Demand, n = 118),
+      Shift119 = lead(Demand, n = 119),
+      Shift120 = lead(Demand, n = 120)
+
+
+
     )
 
 
@@ -313,8 +378,7 @@ drp <- function(dataset, DFU, Period,
 
 
   # calculate additive columns
-  df1 <- df1 %>%
-    group_by(DFU) %>%
+  df1 <- df1 %>% group_by(DFU) %>%
     mutate(
       roll_sum1 = roll_sum(Shifted.Demand, 1, fill = NA, align = "left"),
       roll_sum2 = roll_sum(Shifted.Demand, 2, fill = NA, align = "left"),
@@ -326,6 +390,7 @@ drp <- function(dataset, DFU, Period,
       roll_sum8 = roll_sum(Shifted.Demand, 8, fill = NA, align = "left"),
       roll_sum9 = roll_sum(Shifted.Demand, 9, fill = NA, align = "left"),
       roll_sum10 = roll_sum(Shifted.Demand, 10, fill = NA, align = "left"),
+
       roll_sum11 = roll_sum(Shifted.Demand, 11, fill = NA, align = "left"),
       roll_sum12 = roll_sum(Shifted.Demand, 12, fill = NA, align = "left"),
       roll_sum13 = roll_sum(Shifted.Demand, 13, fill = NA, align = "left"),
@@ -336,6 +401,7 @@ drp <- function(dataset, DFU, Period,
       roll_sum18 = roll_sum(Shifted.Demand, 18, fill = NA, align = "left"),
       roll_sum19 = roll_sum(Shifted.Demand, 19, fill = NA, align = "left"),
       roll_sum20 = roll_sum(Shifted.Demand, 20, fill = NA, align = "left"),
+
       roll_sum21 = roll_sum(Shifted.Demand, 21, fill = NA, align = "left"),
       roll_sum22 = roll_sum(Shifted.Demand, 22, fill = NA, align = "left"),
       roll_sum23 = roll_sum(Shifted.Demand, 23, fill = NA, align = "left"),
@@ -346,6 +412,7 @@ drp <- function(dataset, DFU, Period,
       roll_sum28 = roll_sum(Shifted.Demand, 28, fill = NA, align = "left"),
       roll_sum29 = roll_sum(Shifted.Demand, 29, fill = NA, align = "left"),
       roll_sum30 = roll_sum(Shifted.Demand, 30, fill = NA, align = "left"),
+
       roll_sum31 = roll_sum(Shifted.Demand, 31, fill = NA, align = "left"),
       roll_sum32 = roll_sum(Shifted.Demand, 32, fill = NA, align = "left"),
       roll_sum33 = roll_sum(Shifted.Demand, 33, fill = NA, align = "left"),
@@ -356,6 +423,7 @@ drp <- function(dataset, DFU, Period,
       roll_sum38 = roll_sum(Shifted.Demand, 38, fill = NA, align = "left"),
       roll_sum39 = roll_sum(Shifted.Demand, 39, fill = NA, align = "left"),
       roll_sum40 = roll_sum(Shifted.Demand, 40, fill = NA, align = "left"),
+
       roll_sum41 = roll_sum(Shifted.Demand, 41, fill = NA, align = "left"),
       roll_sum42 = roll_sum(Shifted.Demand, 42, fill = NA, align = "left"),
       roll_sum43 = roll_sum(Shifted.Demand, 43, fill = NA, align = "left"),
@@ -366,6 +434,7 @@ drp <- function(dataset, DFU, Period,
       roll_sum48 = roll_sum(Shifted.Demand, 48, fill = NA, align = "left"),
       roll_sum49 = roll_sum(Shifted.Demand, 49, fill = NA, align = "left"),
       roll_sum50 = roll_sum(Shifted.Demand, 50, fill = NA, align = "left"),
+
       roll_sum51 = roll_sum(Shifted.Demand, 51, fill = NA, align = "left"),
       roll_sum52 = roll_sum(Shifted.Demand, 52, fill = NA, align = "left"),
       roll_sum53 = roll_sum(Shifted.Demand, 53, fill = NA, align = "left"),
@@ -375,7 +444,76 @@ drp <- function(dataset, DFU, Period,
       roll_sum57 = roll_sum(Shifted.Demand, 57, fill = NA, align = "left"),
       roll_sum58 = roll_sum(Shifted.Demand, 58, fill = NA, align = "left"),
       roll_sum59 = roll_sum(Shifted.Demand, 59, fill = NA, align = "left"),
-      roll_sum60 = roll_sum(Shifted.Demand, 60, fill = NA, align = "left")
+      roll_sum60 = roll_sum(Shifted.Demand, 60, fill = NA, align = "left"),
+
+      roll_sum61 = roll_sum(Shifted.Demand, 61, fill = NA, align = "left"),
+      roll_sum62 = roll_sum(Shifted.Demand, 62, fill = NA, align = "left"),
+      roll_sum63 = roll_sum(Shifted.Demand, 63, fill = NA, align = "left"),
+      roll_sum64 = roll_sum(Shifted.Demand, 64, fill = NA, align = "left"),
+      roll_sum65 = roll_sum(Shifted.Demand, 65, fill = NA, align = "left"),
+      roll_sum66 = roll_sum(Shifted.Demand, 66, fill = NA, align = "left"),
+      roll_sum67 = roll_sum(Shifted.Demand, 67, fill = NA, align = "left"),
+      roll_sum68 = roll_sum(Shifted.Demand, 68, fill = NA, align = "left"),
+      roll_sum69 = roll_sum(Shifted.Demand, 69, fill = NA, align = "left"),
+      roll_sum70 = roll_sum(Shifted.Demand, 70, fill = NA, align = "left"),
+
+      roll_sum71 = roll_sum(Shifted.Demand, 71, fill = NA, align = "left"),
+      roll_sum72 = roll_sum(Shifted.Demand, 72, fill = NA, align = "left"),
+      roll_sum73 = roll_sum(Shifted.Demand, 73, fill = NA, align = "left"),
+      roll_sum74 = roll_sum(Shifted.Demand, 74, fill = NA, align = "left"),
+      roll_sum75 = roll_sum(Shifted.Demand, 75, fill = NA, align = "left"),
+      roll_sum76 = roll_sum(Shifted.Demand, 76, fill = NA, align = "left"),
+      roll_sum77 = roll_sum(Shifted.Demand, 77, fill = NA, align = "left"),
+      roll_sum78 = roll_sum(Shifted.Demand, 78, fill = NA, align = "left"),
+      roll_sum79 = roll_sum(Shifted.Demand, 79, fill = NA, align = "left"),
+      roll_sum80 = roll_sum(Shifted.Demand, 80, fill = NA, align = "left"),
+
+      roll_sum81 = roll_sum(Shifted.Demand, 81, fill = NA, align = "left"),
+      roll_sum82 = roll_sum(Shifted.Demand, 82, fill = NA, align = "left"),
+      roll_sum83 = roll_sum(Shifted.Demand, 83, fill = NA, align = "left"),
+      roll_sum84 = roll_sum(Shifted.Demand, 84, fill = NA, align = "left"),
+      roll_sum85 = roll_sum(Shifted.Demand, 85, fill = NA, align = "left"),
+      roll_sum86 = roll_sum(Shifted.Demand, 86, fill = NA, align = "left"),
+      roll_sum87 = roll_sum(Shifted.Demand, 87, fill = NA, align = "left"),
+      roll_sum88 = roll_sum(Shifted.Demand, 88, fill = NA, align = "left"),
+      roll_sum89 = roll_sum(Shifted.Demand, 89, fill = NA, align = "left"),
+      roll_sum90 = roll_sum(Shifted.Demand, 90, fill = NA, align = "left"),
+
+
+      roll_sum91 = roll_sum(Shifted.Demand, 91, fill = NA, align = "left"),
+      roll_sum92 = roll_sum(Shifted.Demand, 92, fill = NA, align = "left"),
+      roll_sum93 = roll_sum(Shifted.Demand, 93, fill = NA, align = "left"),
+      roll_sum94 = roll_sum(Shifted.Demand, 94, fill = NA, align = "left"),
+      roll_sum95 = roll_sum(Shifted.Demand, 95, fill = NA, align = "left"),
+      roll_sum96 = roll_sum(Shifted.Demand, 96, fill = NA, align = "left"),
+      roll_sum97 = roll_sum(Shifted.Demand, 97, fill = NA, align = "left"),
+      roll_sum98 = roll_sum(Shifted.Demand, 98, fill = NA, align = "left"),
+      roll_sum99 = roll_sum(Shifted.Demand, 99, fill = NA, align = "left"),
+      roll_sum100 = roll_sum(Shifted.Demand, 100, fill = NA, align = "left"),
+
+      roll_sum101 = roll_sum(Shifted.Demand, 101, fill = NA, align = "left"),
+      roll_sum102 = roll_sum(Shifted.Demand, 102, fill = NA, align = "left"),
+      roll_sum103 = roll_sum(Shifted.Demand, 103, fill = NA, align = "left"),
+      roll_sum104 = roll_sum(Shifted.Demand, 104, fill = NA, align = "left"),
+      roll_sum105 = roll_sum(Shifted.Demand, 105, fill = NA, align = "left"),
+      roll_sum106 = roll_sum(Shifted.Demand, 106, fill = NA, align = "left"),
+      roll_sum107 = roll_sum(Shifted.Demand, 107, fill = NA, align = "left"),
+      roll_sum108 = roll_sum(Shifted.Demand, 108, fill = NA, align = "left"),
+      roll_sum109 = roll_sum(Shifted.Demand, 109, fill = NA, align = "left"),
+      roll_sum110 = roll_sum(Shifted.Demand, 110, fill = NA, align = "left"),
+
+      roll_sum111 = roll_sum(Shifted.Demand, 111, fill = NA, align = "left"),
+      roll_sum112 = roll_sum(Shifted.Demand, 112, fill = NA, align = "left"),
+      roll_sum113 = roll_sum(Shifted.Demand, 113, fill = NA, align = "left"),
+      roll_sum114 = roll_sum(Shifted.Demand, 114, fill = NA, align = "left"),
+      roll_sum115 = roll_sum(Shifted.Demand, 115, fill = NA, align = "left"),
+      roll_sum116 = roll_sum(Shifted.Demand, 116, fill = NA, align = "left"),
+      roll_sum117 = roll_sum(Shifted.Demand, 117, fill = NA, align = "left"),
+      roll_sum118 = roll_sum(Shifted.Demand, 118, fill = NA, align = "left"),
+      roll_sum119 = roll_sum(Shifted.Demand, 119, fill = NA, align = "left"),
+      roll_sum120 = roll_sum(Shifted.Demand, 120, fill = NA, align = "left")
+
+
     )
 
 
@@ -432,6 +570,7 @@ drp <- function(dataset, DFU, Period,
         (Projected.Inventories.Qty / roll_sum38) < 1 ~ 37 + (Projected.Inventories.Qty - roll_sum37) / Shift38,
         (Projected.Inventories.Qty / roll_sum39) < 1 ~ 38 + (Projected.Inventories.Qty - roll_sum38) / Shift39,
         (Projected.Inventories.Qty / roll_sum40) < 1 ~ 39 + (Projected.Inventories.Qty - roll_sum39) / Shift40,
+
         (Projected.Inventories.Qty / roll_sum41) < 1 ~ 40 + (Projected.Inventories.Qty - roll_sum40) / Shift41,
         (Projected.Inventories.Qty / roll_sum42) < 1 ~ 41 + (Projected.Inventories.Qty - roll_sum41) / Shift42,
         (Projected.Inventories.Qty / roll_sum43) < 1 ~ 42 + (Projected.Inventories.Qty - roll_sum42) / Shift43,
@@ -442,6 +581,7 @@ drp <- function(dataset, DFU, Period,
         (Projected.Inventories.Qty / roll_sum48) < 1 ~ 47 + (Projected.Inventories.Qty - roll_sum47) / Shift48,
         (Projected.Inventories.Qty / roll_sum49) < 1 ~ 48 + (Projected.Inventories.Qty - roll_sum48) / Shift49,
         (Projected.Inventories.Qty / roll_sum50) < 1 ~ 49 + (Projected.Inventories.Qty - roll_sum49) / Shift50,
+
         (Projected.Inventories.Qty / roll_sum51) < 1 ~ 50 + (Projected.Inventories.Qty - roll_sum50) / Shift51,
         (Projected.Inventories.Qty / roll_sum52) < 1 ~ 51 + (Projected.Inventories.Qty - roll_sum51) / Shift52,
         (Projected.Inventories.Qty / roll_sum53) < 1 ~ 52 + (Projected.Inventories.Qty - roll_sum52) / Shift53,
@@ -452,6 +592,74 @@ drp <- function(dataset, DFU, Period,
         (Projected.Inventories.Qty / roll_sum58) < 1 ~ 57 + (Projected.Inventories.Qty - roll_sum57) / Shift58,
         (Projected.Inventories.Qty / roll_sum59) < 1 ~ 58 + (Projected.Inventories.Qty - roll_sum58) / Shift59,
         (Projected.Inventories.Qty / roll_sum60) < 1 ~ 59 + (Projected.Inventories.Qty - roll_sum59) / Shift60,
+
+
+        (Projected.Inventories.Qty / roll_sum61) < 1 ~ 60 + (Projected.Inventories.Qty - roll_sum60) / Shift61,
+        (Projected.Inventories.Qty / roll_sum62) < 1 ~ 61 + (Projected.Inventories.Qty - roll_sum61) / Shift62,
+        (Projected.Inventories.Qty / roll_sum63) < 1 ~ 62 + (Projected.Inventories.Qty - roll_sum62) / Shift63,
+        (Projected.Inventories.Qty / roll_sum64) < 1 ~ 63 + (Projected.Inventories.Qty - roll_sum63) / Shift64,
+        (Projected.Inventories.Qty / roll_sum65) < 1 ~ 64 + (Projected.Inventories.Qty - roll_sum64) / Shift65,
+        (Projected.Inventories.Qty / roll_sum66) < 1 ~ 65 + (Projected.Inventories.Qty - roll_sum65) / Shift66,
+        (Projected.Inventories.Qty / roll_sum67) < 1 ~ 66 + (Projected.Inventories.Qty - roll_sum66) / Shift67,
+        (Projected.Inventories.Qty / roll_sum68) < 1 ~ 67 + (Projected.Inventories.Qty - roll_sum67) / Shift68,
+        (Projected.Inventories.Qty / roll_sum69) < 1 ~ 68 + (Projected.Inventories.Qty - roll_sum68) / Shift69,
+        (Projected.Inventories.Qty / roll_sum70) < 1 ~ 69 + (Projected.Inventories.Qty - roll_sum69) / Shift70,
+
+        (Projected.Inventories.Qty / roll_sum71) < 1 ~ 70 + (Projected.Inventories.Qty - roll_sum70) / Shift71,
+        (Projected.Inventories.Qty / roll_sum72) < 1 ~ 71 + (Projected.Inventories.Qty - roll_sum71) / Shift72,
+        (Projected.Inventories.Qty / roll_sum73) < 1 ~ 72 + (Projected.Inventories.Qty - roll_sum72) / Shift73,
+        (Projected.Inventories.Qty / roll_sum74) < 1 ~ 73 + (Projected.Inventories.Qty - roll_sum73) / Shift74,
+        (Projected.Inventories.Qty / roll_sum75) < 1 ~ 74 + (Projected.Inventories.Qty - roll_sum74) / Shift75,
+        (Projected.Inventories.Qty / roll_sum76) < 1 ~ 75 + (Projected.Inventories.Qty - roll_sum75) / Shift76,
+        (Projected.Inventories.Qty / roll_sum77) < 1 ~ 76 + (Projected.Inventories.Qty - roll_sum76) / Shift77,
+        (Projected.Inventories.Qty / roll_sum78) < 1 ~ 77 + (Projected.Inventories.Qty - roll_sum77) / Shift78,
+        (Projected.Inventories.Qty / roll_sum79) < 1 ~ 78 + (Projected.Inventories.Qty - roll_sum78) / Shift79,
+        (Projected.Inventories.Qty / roll_sum80) < 1 ~ 79 + (Projected.Inventories.Qty - roll_sum79) / Shift80,
+
+        (Projected.Inventories.Qty / roll_sum81) < 1 ~ 80 + (Projected.Inventories.Qty - roll_sum80) / Shift81,
+        (Projected.Inventories.Qty / roll_sum82) < 1 ~ 81 + (Projected.Inventories.Qty - roll_sum81) / Shift82,
+        (Projected.Inventories.Qty / roll_sum83) < 1 ~ 82 + (Projected.Inventories.Qty - roll_sum82) / Shift83,
+        (Projected.Inventories.Qty / roll_sum84) < 1 ~ 83 + (Projected.Inventories.Qty - roll_sum83) / Shift84,
+        (Projected.Inventories.Qty / roll_sum85) < 1 ~ 84 + (Projected.Inventories.Qty - roll_sum84) / Shift85,
+        (Projected.Inventories.Qty / roll_sum86) < 1 ~ 85 + (Projected.Inventories.Qty - roll_sum85) / Shift86,
+        (Projected.Inventories.Qty / roll_sum87) < 1 ~ 86 + (Projected.Inventories.Qty - roll_sum86) / Shift87,
+        (Projected.Inventories.Qty / roll_sum88) < 1 ~ 87 + (Projected.Inventories.Qty - roll_sum87) / Shift88,
+        (Projected.Inventories.Qty / roll_sum89) < 1 ~ 88 + (Projected.Inventories.Qty - roll_sum88) / Shift89,
+        (Projected.Inventories.Qty / roll_sum90) < 1 ~ 89 + (Projected.Inventories.Qty - roll_sum89) / Shift90,
+
+        (Projected.Inventories.Qty / roll_sum91) < 1 ~ 90 + (Projected.Inventories.Qty - roll_sum90) / Shift91,
+        (Projected.Inventories.Qty / roll_sum92) < 1 ~ 91 + (Projected.Inventories.Qty - roll_sum91) / Shift92,
+        (Projected.Inventories.Qty / roll_sum93) < 1 ~ 92 + (Projected.Inventories.Qty - roll_sum92) / Shift93,
+        (Projected.Inventories.Qty / roll_sum94) < 1 ~ 93 + (Projected.Inventories.Qty - roll_sum93) / Shift94,
+        (Projected.Inventories.Qty / roll_sum95) < 1 ~ 94 + (Projected.Inventories.Qty - roll_sum94) / Shift95,
+        (Projected.Inventories.Qty / roll_sum96) < 1 ~ 95 + (Projected.Inventories.Qty - roll_sum95) / Shift96,
+        (Projected.Inventories.Qty / roll_sum97) < 1 ~ 96 + (Projected.Inventories.Qty - roll_sum96) / Shift97,
+        (Projected.Inventories.Qty / roll_sum98) < 1 ~ 97 + (Projected.Inventories.Qty - roll_sum97) / Shift98,
+        (Projected.Inventories.Qty / roll_sum99) < 1 ~ 98 + (Projected.Inventories.Qty - roll_sum98) / Shift99,
+        (Projected.Inventories.Qty / roll_sum100) < 1 ~ 99 + (Projected.Inventories.Qty - roll_sum99) / Shift100,
+
+        (Projected.Inventories.Qty / roll_sum101) < 1 ~ 100 + (Projected.Inventories.Qty - roll_sum100) / Shift101,
+        (Projected.Inventories.Qty / roll_sum102) < 1 ~ 101 + (Projected.Inventories.Qty - roll_sum101) / Shift102,
+        (Projected.Inventories.Qty / roll_sum103) < 1 ~ 102 + (Projected.Inventories.Qty - roll_sum102) / Shift103,
+        (Projected.Inventories.Qty / roll_sum104) < 1 ~ 103 + (Projected.Inventories.Qty - roll_sum103) / Shift104,
+        (Projected.Inventories.Qty / roll_sum105) < 1 ~ 104 + (Projected.Inventories.Qty - roll_sum104) / Shift105,
+        (Projected.Inventories.Qty / roll_sum106) < 1 ~ 105 + (Projected.Inventories.Qty - roll_sum105) / Shift106,
+        (Projected.Inventories.Qty / roll_sum107) < 1 ~ 106 + (Projected.Inventories.Qty - roll_sum106) / Shift107,
+        (Projected.Inventories.Qty / roll_sum108) < 1 ~ 107 + (Projected.Inventories.Qty - roll_sum107) / Shift108,
+        (Projected.Inventories.Qty / roll_sum109) < 1 ~ 108 + (Projected.Inventories.Qty - roll_sum108) / Shift109,
+        (Projected.Inventories.Qty / roll_sum110) < 1 ~ 109 + (Projected.Inventories.Qty - roll_sum109) / Shift110,
+
+        (Projected.Inventories.Qty / roll_sum111) < 1 ~ 110 + (Projected.Inventories.Qty - roll_sum110) / Shift111,
+        (Projected.Inventories.Qty / roll_sum112) < 1 ~ 111 + (Projected.Inventories.Qty - roll_sum111) / Shift112,
+        (Projected.Inventories.Qty / roll_sum113) < 1 ~ 112 + (Projected.Inventories.Qty - roll_sum112) / Shift113,
+        (Projected.Inventories.Qty / roll_sum114) < 1 ~ 113 + (Projected.Inventories.Qty - roll_sum113) / Shift114,
+        (Projected.Inventories.Qty / roll_sum115) < 1 ~ 114 + (Projected.Inventories.Qty - roll_sum114) / Shift115,
+        (Projected.Inventories.Qty / roll_sum116) < 1 ~ 115 + (Projected.Inventories.Qty - roll_sum115) / Shift116,
+        (Projected.Inventories.Qty / roll_sum117) < 1 ~ 116 + (Projected.Inventories.Qty - roll_sum116) / Shift117,
+        (Projected.Inventories.Qty / roll_sum118) < 1 ~ 117 + (Projected.Inventories.Qty - roll_sum117) / Shift118,
+        (Projected.Inventories.Qty / roll_sum119) < 1 ~ 118 + (Projected.Inventories.Qty - roll_sum118) / Shift119,
+        (Projected.Inventories.Qty / roll_sum120) < 1 ~ 119 + (Projected.Inventories.Qty - roll_sum119) / Shift120,
+
         TRUE ~ 0
       ) # close case_when
   ) # close mutate
@@ -501,7 +709,7 @@ drp <- function(dataset, DFU, Period,
   #-------------------------------
   #-------------------------------
 
-  #         Calculation of Projected Stocks min (Safety Stocks) and Max
+  # Calculation of Projected Stocks min (Safety Stocks) and Max
 
   #-------------------------------
   #-------------------------------
@@ -677,8 +885,7 @@ drp <- function(dataset, DFU, Period,
   # creation of DRP index to increment the DRP horizon of calculation, and later on link w/ DRPCovDur
   # df1<-setDT(df1)[, DRP.index := cumsum(DRP.period), by = DFU]
 
-  df1 <- df1 %>%
-    group_by(DFU) %>%
+  df1 <- df1 %>% group_by(DFU) %>%
     mutate(
       DRP.index = cumsum(DRP.period)
     )
@@ -788,8 +995,7 @@ drp <- function(dataset, DFU, Period,
 
 
   # calculate the Projected Inventories keeping only the adjusted.Supply.Plan.Qty as Supply Plan
-  df1 <- df1 %>%
-    group_by(DFU, Period) %>%
+  df1 <- df1 %>% group_by(DFU, Period) %>%
     summarise(
       Demand = sum(Demand),
       Opening = sum(Opening),
@@ -984,8 +1190,47 @@ drp <- function(dataset, DFU, Period,
   df1$DRP.Projected.Inventories.Qty <- round(df1$DRP.Projected.Inventories.Qty, 1)
 
 
+
+
+
+  #-------------------------------
+  # Adjustment
+  #-------------------------------
+
+  # Now we do a little adjustment, as displaying negative coverages is not really meaningful.
+
+  # replace negative Coverages by zero
+  # as a negative coverage doesn't make sense
+
+  df1$DRP.Calculated.Coverage.in.Periods <- if_else(df1$DRP.Calculated.Coverage.in.Periods > 0,
+                                                    df1$DRP.Calculated.Coverage.in.Periods, 0)
+
+
+
+  # Another adjustment:
+  # For the overstocks, we put 99 by default
+  df1$DRP.Calculated.Coverage.in.Periods <- if_else(df1$DRP.Calculated.Coverage.in.Periods == 0 & df1$DRP.Projected.Inventories.Qty > 0,
+                                                    99,
+                                                    df1$DRP.Calculated.Coverage.in.Periods)
+
+
+
   # round the DRP.Calculated.Coverage.in.Periods
   df1$DRP.Calculated.Coverage.in.Periods <- round(df1$DRP.Calculated.Coverage.in.Periods, 1)
+
+
+
+
+
+
+
+
+
+
+
+  # formatting
+  df1 <- as.data.frame(df1)
+
 
 
   #-------------------------------
