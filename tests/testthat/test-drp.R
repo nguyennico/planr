@@ -58,8 +58,7 @@ test_that("drp() returns the expected result", {
 
 
   # expected output for the calculated projected coverages
-  expected_output_Coverage <- c(2.7,  1.7,  0.7, -0.5, -0.9,  7.4,  6.4,  5.4,  4.4,  3.4,  2.4,  5.0,  4.0,  3.0,  5.0,  4.0,  3.0,  5.0,  4.0,  3.0,  0.0,  0.0,  0.0,  0.0)
-
+  expected_output_Coverage <- c(2.7,  1.7,  0.7, 0, 0,  7.4,  6.4,  5.4,  4.4,  3.4,  2.4,  5.0,  4.0,  3.0,  5.0,  4.0,  3.0,  5.0,  4.0,  3.0,  NA,  NA,  NA,  NA)
 
 
   # expected output for the calculated projected inventories
