@@ -71,6 +71,14 @@ test_that("proj_inv() returns the expected result", {
                                        0.15, -0.32, -0.71,  1.70,  1.32,  0.95,  0.69, NA, NA, NA, NA, NA)
 
 
+
+  # expected output for SSOS_qty
+  expected_output_SSOS_qty <- c(0, 0, 0, 0, 0, 1022, 727, 501, 165, 0, 0,
+                                0, 0, 0, 0, 502, 267, 0, 0, NA, NA, NA, NA, NA)
+
+
+
+
   #--------------------------------
   # Run function
   #--------------------------------
@@ -99,6 +107,8 @@ test_that("proj_inv() returns the expected result", {
 
 
 
+  # extract the SSOS_qty
+  output_SSOS_qty <- calculated_dataset$SSOS_qty
 
 
 
@@ -123,6 +133,10 @@ test_that("proj_inv() returns the expected result", {
 
   # Check if the output matches the expected result for the Ratio.PI.vs.Max
   expect_equal(output_Ratio.PI.vs.Max, expected_output_Ratio.PI.vs.Max)
+
+  # Check if the output matches the expected result for the SSOS_qty
+  expect_equal(output_SSOS_qty, expected_output_SSOS_qty)
+
 
 
 
