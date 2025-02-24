@@ -37,6 +37,8 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening, Supply,
   Safety.Stocks <- NULL
   Maximum.Stocks <- NULL
 
+  SSOS_qty <- NULL # added on 23rd of Feb 2025, thanks to April who's pointed this out!
+
 
 
 
@@ -441,7 +443,7 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening, Supply,
   #-------------------------------
   #-------------------------------
 
-  #         Calculation of Projected Stocks min (Safety Stocks) and Max
+  # Calculation of Projected Stocks min (Safety Stocks) and Max
 
   #-------------------------------
   #-------------------------------
@@ -688,9 +690,23 @@ proj_inv <- function(dataset, DFU, Period, Demand, Opening, Supply,
 
 
 
+  #-------------------------------
+  # Calculate SSOS_qty
+  # added on 23rd of Feb 2025
+  #-------------------------------
+
+
+  # calculate SSOS_qty as the difference between Projected.Inventories.Qty and Maximum.Stocks
+  df1$SSOS_qty <- df1$Projected.Inventories.Qty - df1$Maximum.Stocks
+
+  # only valid if positive, otherwise equals to zero
+  df1$SSOS_qty <- if_else(df1$SSOS_qty > 0, df1$SSOS_qty, 0)
 
 
 
+
+  # formatting
+  df1 <- as.data.frame(df1)
 
 
   #-------------------------------
