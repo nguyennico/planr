@@ -21,7 +21,10 @@ There are currently **6 groups** of functions :
 
     -   **calculation & analysis :** proj_inv()
 
--   **Calculation of projected inventories & constrained demand :** const_dmd()
+-   **Calculation of projected inventories & constrained demand and allocation:**
+
+    -   **calculation of constrained demand :** const_dmd()
+    -   **allocation of a constrained demand :** alloc_dmd()
 
 -   **Calculation of Replenishment Plan** (also called DRP) : drp()
 
@@ -214,8 +217,6 @@ It can be useful to :
 -   R Views: [Using R in Inventory Management and Demand Forecasting](https://rviews.rstudio.com/2022/10/20/projected-inventory-calculations-using-r-1/)
 
 -   Posit / RStudio Data Science Meetup : [Supply Chain Management](https://www.youtube.com/watch?v=rzs6aSr4XoU)
-
--   R Shiny app demo for projected inventories : [example of shiny app using the planr package](https://niconguyen.shinyapps.io/Projected_Inventories/)
 
 -   ASCM : [S&OP and the Digital Supply Chain, using R & Python](https://www.ascm.org/ascm-insights/sop-and-the-digital-supply-chain/)
 
