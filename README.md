@@ -227,3 +227,5 @@ It can be useful to :
 -   2 levels network demo shiny app : [2 Levels Network (shinyapps.io)](https://niconguyen.shinyapps.io/Two_Levels_Network/)
 
 -   Portfolio Calculation of Projected Inventories : [RPubs - Demo Calculation Projected Inventories](https://rpubs.com/nikonguyen/projected_inventories_demo)
+
+-   Allocation of Demand : [RPubs - presentation function alloc_dmd](https://rpubs.com/nikonguyen/planr_alloc_dmd)
