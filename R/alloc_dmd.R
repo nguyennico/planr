@@ -171,6 +171,9 @@ alloc_dmd <- function(dataset,
     )
 
 
+  # part added on 15th of Oct 2025, to fix the 1st period
+  df1$status <- if_else(is.na(df1$status) & df1$allocation_tag == "allocation", "allocation", df1$status)
+
 
   # keep results
   calculated_pi_data <- df1
