@@ -238,7 +238,7 @@ It can be useful to :
 
 -   More info here : [RPubs - eBook Demand and Supply Planning using R](https://rpubs.com/nikonguyen/ebook_demand_and_supply_planning_using_R)
 
-[![eBook Demand and Supply Planning using R](docs/cover.png){width="400"}](https://rpubs.com/nikonguyen/ebook_demand_and_supply_planning_using_R)
+![eBook Demand and Supply Planning using R](docs/cover.png){width="300"}
 
 > Book Summary
 
