@@ -275,3 +275,17 @@ Designed for supply chain professionals, students, data analysts, and R users lo
 You will get the skills to develop efficient, custom, and **data-driven Demand & Supply planning solutions**.
 
 Ready? Let's start!
+
+> Some links about `planr` [R Consortium](https://r-consortium.org/) interview :
+
+-   [R Consortium Supply Chain](https://r-consortium.org/posts/supply-chain-planning-with-r-an-interview-with-nicolas-nguyen-developer-of-the-planr-r-package/)
+
+-   [R Consortium: "New from the R Consortium: an …" - Fosstodon](https://fosstodon.org/@RConsortium/116794560125829092)
+
+-   [Post by \@rconsortium.bsky.social — Bluesky](https://bsky.app/profile/rconsortium.bsky.social/post/3movardd2yc2a)
+
+-   [R Consortium on X](https://x.com/RConsortium/status/2069087490397569371)
+
+-   [Reddit](https://www.reddit.com/r/rstats/comments/1ucon89/r_for_supply_chain_planning_and_the_planr_package/)
+
+-   [LinkedIn](https://www.linkedin.com/posts/r-consortium_supply-chain-planning-with-r-an-interview-activity-7474851461915430913-7Xw0)
