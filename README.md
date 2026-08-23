@@ -37,7 +37,11 @@ There are currently **7 groups** of functions :
 
 -   **Projection of In Transit inventories** : `proj_git()`
 
--   **Conversion of coverages into volumes** : `proj_cov()`
+-   **Conversions :**
+
+    -   **of coverages into volumes** : `proj_cov()`
+
+    -   **of projected volumes (inventories) into coverages** : `inv_to_cov()`
 
 Calculations are performed at monthly or weekly buckets.
 
@@ -236,7 +240,7 @@ It can be useful to :
 
 > Hey, do you want a book to learn how to master R in Supply Chain?
 
--   More info here : [RPubs - eBook Demand and Supply Planning using R](https://rpubs.com/nikonguyen/ebook_demand_and_supply_planning_using_R)
+-   More info here : [Demand and Supply Planning with R](https://nguyennico.github.io/demand_and_supply_planning_with_R/)
 
 ![eBook Demand and Supply Planning using R](docs/cover.png){width="300"}
 
