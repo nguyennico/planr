@@ -188,3 +188,89 @@ NULL
 #' @format A data frame with 447 rows and 6 variables
 NULL
 
+
+
+
+#' alloc_data
+#'
+#' This dataset contains the basic features to calculate the allocation of a Demand between different receiving entities.
+#' Just 5 key features are needed for this: a DFU, a Period, a Demand, an initial Opening Inventory and a Supply Plan.
+#' And the breakdown of the Demand by receiving entities, here 5 different Distributors.
+#' The idea is to use this dataset to calculate a constrained demand for each Product, on top of the projected inventories & coverages.
+#' And to allocate this constrained demand based on the percentage of demand that each receiving entities represents for a given period of time.
+#' It's a concept of fair allocation.
+#' A constrained demand is a possible demand, which can be answered considering the projected inventories.
+#' Then we can apply on this dataset the const_dmd() function, it will add 2 variables : a Constrained.Demand and a Current.Stock.Available.Tag .
+#' The Constrained.Demand is the Demand which can be answered considering the projected inventories, i.e which quantity can be answered and when it can be answered.
+#' The function alloc_dmd() will allocate this constrained demand between receiving entities.
+#'
+#' \itemize{
+#'   \item DFU, an item
+#'   \item Period, a date
+#'   \item Dist1, a consumption in units related to the distributor 1
+#'   \item Dist2, a consumption in units related to the distributor 2
+#'   \item Dist3, a consumption in units related to the distributor 3
+#'   \item Dist4, a consumption in units related to the distributor 4
+#'   \item Dist5, a consumption in units related to the distributor 5
+#'   \item Demand, a consumption in units
+#'   \item Opening, available inventories at the beginning in units
+#'   \item Supply, a Replenishment Plan in units
+#'
+#' }
+#'
+#'
+#' @name alloc_data
+#' @usage data(alloc_data)
+#' @docType data
+#' @author Nicolas Nguyen \email{nikonguyen@yahoo.fr}
+#' @format A data frame with 85 rows and 10 variables
+NULL
+
+
+
+#' cov_vol_data
+#'
+#' This dataset contains the basic features to convert a coverage expressed in periods into a coverage expressed in units
+#' We can apply on it the cov_vol() function, it will return the related coverage in units
+#'
+#' \itemize{
+#'   \item DFU, an item
+#'   \item Period, a date
+#'   \item Demand, a consumption in units
+#'   \item Coverage the targeted coverage that we want to convert, expressed in number of periods
+#'
+#' }
+#'
+#'
+#' @name cov_vol_data
+#' @usage data(cov_vol_data)
+#' @docType data
+#' @author Nicolas Nguyen \email{nikonguyen@yahoo.fr}
+#' @format A data frame with 520 rows and 4 variables
+NULL
+
+
+
+#' inventories_data
+#'
+#' This dataset contains the basic features to convert projected inventories into their related projected coverage expressed in periods
+#' We can apply on it the inv_to_cov() function, it will return the related coverage in periods
+#'
+#' \itemize{
+#'   \item DFU, an item
+#'   \item Period, a date
+#'   \item Inventories, projected inventories in units that we want to convert in coverage
+#'   \item Demand, a consumption in units
+#'
+#' }
+#'
+#'
+#' @name inventories_data
+#' @usage data(inventories_data)
+#' @docType data
+#' @author Nicolas Nguyen \email{nikonguyen@yahoo.fr}
+#' @format A data frame with 72 rows and 4 variables
+NULL
+
+
+
