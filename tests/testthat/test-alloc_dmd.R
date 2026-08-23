@@ -1,7 +1,7 @@
 
 
 
-test_that("alloc_dmd) returns the expected result", {
+test_that("alloc_dmd() returns the expected result", {
 
 
   #--------------------------------
