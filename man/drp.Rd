@@ -25,7 +25,7 @@ drp(dataset, DFU, Period, Demand, Opening, Supply, SSCov, DRPCovDur, MOQ, FH)
 
 \item{MOQ}{the Multiple Order Quantity, expressed in units, 1 by default or a multiple of a Minimum Order Quantity}
 
-\item{FH}{defines the Frozen and Free Horizon. It hase 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.}
+\item{FH}{defines the Frozen and Free Horizon. It has 2 values: Frozen or Free. If Frozen : no calculation of Replenishment Plan yet, the calculation starts when the period is defined as Free. We can use this parameter to consider some defined productions plans or supplies (allocations, workorders,...) in the short-term for example.}
 }
 \value{
 a dataframe with the calculated Replenishment Plan and related Projected inventories and Coverages

@@ -11,7 +11,8 @@ A data frame with 520 rows and 7 variables
 data(blueprint)
 }
 \description{
-This dataset contains the basic features to calculate projected inventories and coverages and also 2 additional info: a minimum and maximum targets of stock coverage.
+This dataset contains the basic features to calculate projected inventories and coverages.
+And also 2 additional info: a minimum and maximum targets of stock coverage.
 We can apply on it the proj_inv() function, it will return calculated projected inventories and coverages as well as an analysis of the position of the projected inventories versus the minimum and maximum stocks targets.
 }
 \details{
